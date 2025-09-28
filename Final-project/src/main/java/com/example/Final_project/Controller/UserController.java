@@ -1,25 +1,37 @@
 package com.example.Final_project.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.Final_project.Exception.OurRuntimeException;
 import com.example.Final_project.RequestDto.UserRequestDto;
 import com.example.Final_project.Service.UserService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/users")
 @CrossOrigin(origins = "*")
 public class UserController {
-
-	@Autowired
 	private UserService userService;
-	
+
 	@PostMapping(path = "/register")
-	public void createUser(@RequestBody UserRequestDto dto) {
+	public void createUser(@RequestBody UserRequestDto dto) {	
+	public void createUser(@Valid @RequestBody UserRequestDto dto,BindingResult br)  {
+		if (br.hasErrors()) {
+			throw new OurRuntimeException(br,"");
+		}
 		userService.create(dto);
 	}
+	
+	@PostMapping(path = "/login")
+	public String userLogin(@RequestBody UserRequestDto d) {
+		return userService.login(d);
+	}
+
 }
