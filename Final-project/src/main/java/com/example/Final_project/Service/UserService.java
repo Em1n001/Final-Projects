@@ -10,26 +10,21 @@ import com.example.Final_project.Exception.OurRuntimeException;
 import com.example.Final_project.Repository.UserRepository;
 import com.example.Final_project.RequestDto.UserRequestDto;
 import com.example.Final_project.entity.User;
-import com.example.sofa_shopping.util.JwtUtil;
+import com.example.Final_project.Util.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
 public class UserService {
-	
-	@Autowired
-	private UserRepository userRepository;
+
+	private  UserRepository userRepository;
 	private  PasswordEncoder passwordEncoder;
 	private  JwtUtil jwtUtil;
 
 	public void create(UserRequestDto dto) {
-		
 		Optional<User> byUsername =  userRepository.findByUsername(dto.getUsername());
 		if (byUsername.isPresent()) {
 			throw new OurRuntimeException(null,"user is exists");
 		}
-		
 		User user = new User();
 		user.setId(null);
 		user.setName(dto.getName());
@@ -40,7 +35,7 @@ public class UserService {
 		String encode = passwordEncoder.encode(dto.getPassword());
 		user.setPassword(encode);
 		userRepository.save(user);
-		
+
 	}
 
 	public String login(UserRequestDto d) {

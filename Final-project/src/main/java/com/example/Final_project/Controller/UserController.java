@@ -20,8 +20,7 @@ import jakarta.validation.Valid;
 public class UserController {
 	private UserService userService;
 
-	@PostMapping(path = "/register")
-	public void createUser(@RequestBody UserRequestDto dto) {	
+	@PostMapping(path = "/register")	
 	public void createUser(@Valid @RequestBody UserRequestDto dto,BindingResult br)  {
 		if (br.hasErrors()) {
 			throw new OurRuntimeException(br,"");

@@ -1,6 +1,5 @@
 package com.example.Final_project.Response;
 
-
 import lombok.Data;
 
 @Data
