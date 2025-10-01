@@ -1,5 +1,6 @@
 package com.example.Final_project.Util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @Component
@@ -17,9 +19,10 @@ public class JwtUtil {
 	private Key signinKey;
 
 	public JwtUtil(@Value("${jwt.secret}") String secretKey) {
-	 byte[] decode = Base64.getDecoder().decode(secretKey);
-	 this.signinKey = Keys.hmacShaKeyFor(decode);
-	}
+		 byte[] decode = Base64.getDecoder().decode(secretKey);
+		 this.signinKey = Keys.hmacShaKeyFor(decode);
+		}
+
 	
 	public String generateToken(String username) {
 		return Jwts.builder()
