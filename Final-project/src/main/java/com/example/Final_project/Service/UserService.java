@@ -9,15 +9,17 @@ import org.springframework.stereotype.Service;
 import com.example.Final_project.Exception.OurRuntimeException;
 import com.example.Final_project.Repository.UserRepository;
 import com.example.Final_project.RequestDto.UserRequestDto;
-import com.example.Final_project.entity.User;
 import com.example.Final_project.Util.JwtUtil;
+import com.example.Final_project.entity.User;
 
-import lombok.RequiredArgsConstructor;
-
+@Service
 public class UserService {
 
+	@Autowired
 	private  UserRepository userRepository;
+	@Autowired
 	private  PasswordEncoder passwordEncoder;
+	@Autowired
 	private  JwtUtil jwtUtil;
 
 	public void create(UserRequestDto dto) {

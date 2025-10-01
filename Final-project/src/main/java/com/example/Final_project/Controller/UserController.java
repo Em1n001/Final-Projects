@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 @RequestMapping(path = "/users")
 @CrossOrigin(origins = "*")
 public class UserController {
+	@Autowired
 	private UserService userService;
 
 	@PostMapping(path = "/register")	
