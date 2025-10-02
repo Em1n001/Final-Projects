@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.example.Final_project.Exception.OurRuntimeException;
-import com.example.ProjectBook.response.ExceptionResponse;
-import com.example.ProjectBook.response.ValidationResponse;
+import com.example.Final_project.Response.ExceptionResponse;
+import com.example.Final_project.Response.ValidationResponse;
 
 @RestControllerAdvice
 public class ExceptionHandlers {
@@ -34,9 +34,9 @@ public class ExceptionHandlers {
 				validation.setDefaultMessage(fieldError.getDefaultMessage());
 				validations.add(validation);
 			}
-			response.setValidationResponse(validations);
+			response.setValidations(validations);
 		}
-		response.setMassage(exc.getMessage());
+		response.setMessage(exc.getMessage());
 		return response;
 	}
 }

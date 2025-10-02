@@ -2,8 +2,6 @@ package com.example.Final_project.Response;
 
 import java.util.List;
 
-import com.example.ProjectBook.response.ValidationResponse;
-
 import lombok.Data;
 
 @Data
