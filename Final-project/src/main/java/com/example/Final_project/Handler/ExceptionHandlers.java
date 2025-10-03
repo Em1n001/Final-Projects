@@ -18,7 +18,7 @@ import com.example.Final_project.Response.ValidationResponse;
 public class ExceptionHandlers {
 
 	@ExceptionHandler
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST) //400
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST) 
 	public ExceptionResponse handle(OurRuntimeException exc) {
 		ExceptionResponse response = new ExceptionResponse();
 		
