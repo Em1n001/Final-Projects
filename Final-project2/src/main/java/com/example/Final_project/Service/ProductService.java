@@ -2,23 +2,33 @@ package com.example.Final_project.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.Final_project.Exception.OurRuntimeException;
 import com.example.Final_project.Repository.ProductRepository;
+import com.example.Final_project.Repository.UserRepository;
 import com.example.Final_project.RequestDto.ProductRequestDto;
 import com.example.Final_project.Response.ProductListResponse;
 import com.example.Final_project.Response.ProductResponseDto;
 import com.example.Final_project.entity.Product;
+import com.example.Final_project.entity.User;
 
 @Service
 public class ProductService {
 
+	@Autowired UserRepository userRepository;
+	
 	@Autowired ProductRepository productRepository;
 	
 	public void create(ProductRequestDto d) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		User user = userRepository.getUserByUsername(username);
+		Integer id = user.getId();
+		
 		Product product = new Product();
 		product.setId(null);
 		product.setPrice(d.getPrice());
@@ -26,12 +36,18 @@ public class ProductService {
 		product.setModel(d.getModel());
 		product.setRating(d.getRating());
 		product.setCategory(d.getCategory());
+		product.setDescription(d.getDescription());
 		product.setImage(d.getImage());
+		product.setUserId(id);
 		productRepository.save(product);
 	}
 
 	public ProductListResponse getAll() {
-			List<Product> products = productRepository.findAll();
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		User user = userRepository.getUserByUsername(username);
+		Integer id = user.getId();
+		
+			List<Product> products = productRepository.findAllByUserId(id);
 			ProductListResponse response = new ProductListResponse();
 			response.setProducts(products);
 			return response;
@@ -50,6 +66,7 @@ public class ProductService {
 			response.setModel(product.getModel());
 			response.setRating(product.getRating());
 			response.setCategory(product.getCategory());
+			response.setDescription(product.getDescription());
 			response.setPrice(product.getPrice());
 			response.setImage(product.getImage());
 		}else {
@@ -71,6 +88,7 @@ public class ProductService {
 			product.setModel(dto.getModel());
 			product.setRating(dto.getRating());
 			product.setCategory(dto.getCategory());
+			product.setDescription(dto.getDescription());
 			product.setPrice(dto.getPrice());
 			product.setImage(dto.getImage());
 			productRepository.save(product);
@@ -90,5 +108,55 @@ public class ProductService {
 		}
 		
 	}
-}
 
+	public ProductListResponse getAllProduct() {
+		ProductListResponse response = new ProductListResponse();
+		List<Product> all = productRepository.findAll();
+		response.setProducts(all);
+		return response;
+	}
+
+	public List<ProductResponseDto> search(String query) {
+		List<Product> products = productRepository.findAll();
+		return products.stream().filter(product -> product.getBrand().toLowerCase().contains(query.toLowerCase()))
+				.map(product -> {
+					ProductResponseDto response = new ProductResponseDto();
+					response.setId(product.getId());
+					response.setBrand(product.getBrand());
+					response.setModel(product.getModel());
+					response.setRating(product.getRating());
+					response.setCategory(product.getCategory());
+					response.setDescription(product.getDescription());
+					response.setPrice(product.getPrice());
+					response.setImage(product.getImage());
+					return response;
+				})
+				.collect(Collectors.toList());
+	}
+
+	public List<ProductResponseDto> sortedProduct(String sort) {
+		List<Product> products;
+		
+		if ("priceAsc".equalsIgnoreCase(sort)) {
+			products = productRepository.findAllByOrderByPriceAsc();
+		}else if("priceDesc".equalsIgnoreCase(sort)) {
+			products = productRepository.findAllByOrderByPriceDesc();
+		}else {
+			products = productRepository.findAll();
+		}
+		return products.stream().map(product -> {
+			ProductResponseDto response = new ProductResponseDto();
+			response.setId(product.getId());
+			response.setBrand(product.getBrand());
+			response.setModel(product.getModel());
+			response.setRating(product.getRating());
+			response.setCategory(product.getCategory());
+			response.setDescription(product.getDescription());
+			response.setPrice(product.getPrice());
+			response.setImage(product.getImage());
+			return response;
+		})
+				.collect(Collectors.toList());
+	}
+
+}

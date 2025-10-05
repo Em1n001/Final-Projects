@@ -20,7 +20,7 @@ loginForm.addEventListener('submit' , (e) =>{
     .then(async response =>{
         if(response.ok ){
             alert("Giriş uğurlu oldu")
-            const token = response.text();
+            const token = await response.text();
             localStorage.setItem('token',token);
             document.getElementById('username').value,
             document.getElementById('password').value

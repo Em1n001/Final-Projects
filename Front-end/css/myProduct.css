@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+
+
         /* Sıfırlama və Əsas Stillər */
         * {
             margin: 0;
@@ -151,8 +153,7 @@
             align-items: center;
             margin-bottom: 20px;
         }
-
-        /* Yeni Məhsul Düyməsi (Şəkildəki Mavi Rəngdə) */
+        
         .add-new-btn {
             background-color: var(--blue-color); 
             color: white;
@@ -275,4 +276,8 @@
             padding: 20px 0;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
+        }
+
+        tbody td img{
+            width: 200px;
         }

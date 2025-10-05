@@ -26,7 +26,7 @@
 
             <div class="actions-area">
                 <div class="search-container">
-                    <input type="text" placeholder="What are you looking for?">
+                    <input type="text" placeholder="What are you looking for?" id="searchInput" oninput="searchProduct()">
                     <button><span class="search-icon">🔍</span></button>
                 </div>
                 
@@ -56,9 +56,9 @@
                 <div class="sort-by">
                     Sort by: 
                     <select>
-                        <option value="pop">Popularity</option>
-                        <option value="new">Newest</option>
-                        <option value="price">Price</option>
+                        <option value="price">Sort By</option>
+                        <option value="priceAsc">Sort By: Price(Low to High)</option>
+                        <option value="priceDesc">Sort By: Price(High to Low)</option>
                     </select>
                 </div>
             </div>
@@ -151,10 +151,10 @@
             <div class="footer-col download-app-col">
                 <h4>Download App</h4>
                 <p>Save $3 with App New User Only</p>
-                <img src="https://via.placeholder.com/90x90?text=QR+Code" alt="QR Code" class="qr-code">
+                <img src="" alt="QR Code" class="qr-code">
                 <div class="app-stores">
-                    <img src="https://via.placeholder.com/90x30?text=Google+Play" alt="Google Play">
-                    <img src="https://via.placeholder.com/90x30?text=App+Store" alt="App Store">
+                    <img src="" alt="Google Play">
+                    <img src="" alt="App Store">
                 </div>
                 <div class="social-links">
                      <a href="#">F</a> <a href="#">T</a> <a href="#">I</a> <a href="#">in</a> 
@@ -166,6 +166,6 @@
             &copy; Copyright Rimel 2022. All right reserved
         </div>
     </footer>
-
+            <script src="./js/shop.js"></script>
 </body>
 </html>

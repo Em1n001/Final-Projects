@@ -27,10 +27,9 @@ public class Product {
 	private String model;
 	private String category;
 	private Integer rating;
+	@Column(columnDefinition = "TEXT")
+	private String description;
 
-
-
-	
 	@Column(columnDefinition = "TEXT")
 	private String image;
 	

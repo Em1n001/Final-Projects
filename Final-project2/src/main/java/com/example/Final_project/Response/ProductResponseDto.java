@@ -16,6 +16,7 @@ public class ProductResponseDto {
 	private String brand;
 	private String model;
 	private String category;
+	private String description;
 	private Integer rating;
 	private String image;
 }

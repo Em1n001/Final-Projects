@@ -17,6 +17,7 @@ function addProduct() {
         }
 
         const productId = localStorage.getItem('productId');
+        //localStorage.removeItem('productId');
 
         if (productId) {
             updateProduct(product, productId);
@@ -88,16 +89,16 @@ function updateProduct() {
 
     const productForm = document.querySelector('form');
 
-    const productId = localStorage.getItem('productId');
+   // const productId = localStorage.getItem('productId');
 
-    const product = {
-        id: productId,
-        model: document.getElementById('product-model'),
-        brand: document.getElementById('product-brand'),
-        price: document.getElementById('product-price'),
-        category: document.getElementById('product-category'),
-        image: document.getElementById('product-image'),
-        rating: document.getElementById('product-rating')
+    //const product = {
+       // id: productId,
+      //  model: document.getElementById('product-model'),
+      //  brand: document.getElementById('product-brand'),
+      //  price: document.getElementById('product-price'),
+      //  category: document.getElementById('product-category'),
+      //  image: document.getElementById('product-image'),
+      //  rating: document.getElementById('product-rating')
     }
 
     productForm.addEventListener('submit', (e) => {
@@ -110,7 +111,15 @@ function updateProduct() {
                 'Content-Type': 'application/json'
 
             },
-            body: JSON.stringify(product)
+            body: JSON.stringify({
+                id:productId,
+                brand:product.brand,
+                model:product.model,
+                category:product.category,
+                price:product.price,
+                rating:product.rating,
+                image:product.image
+            })
         })
             .then(response => {
                 if (response.ok) {
@@ -120,4 +129,4 @@ function updateProduct() {
                 }
             })
     })
-}
+        

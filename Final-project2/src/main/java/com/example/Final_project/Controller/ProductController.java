@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Final_project.RequestDto.ProductRequestDto;
@@ -58,5 +59,19 @@ public class ProductController {
 	public void deleteProduct(@PathVariable Integer id) {
 		productService.delete(id);
 		
+	}
+	
+	@GetMapping(path="/all")
+	public ProductListResponse getAll() {
+		return productService.getAllProduct();
+	}
+	@GetMapping(path="/search")
+	public List<ProductResponseDto> searchProduct(@RequestParam(name = "query") String query){
+		return productService.search(query);
+	}
+	
+	@GetMapping(path = "/sort")
+	public List<ProductResponseDto> sortedproduct(@RequestParam(name = "sort",required = false) String sort){
+		return productService.sortedProduct(sort);
 	}
 }

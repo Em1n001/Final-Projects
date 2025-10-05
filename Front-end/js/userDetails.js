@@ -20,4 +20,3 @@ function getUserProfile(){
 }
 
 getUserProfile();
-
