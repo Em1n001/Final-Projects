@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Sıfırlama və Əsas Stillər */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Qırmızı Rəng Dəyişənləri */
+        :root {
+            --red-color: #a94442; /* Əsas Qırmızı (Footer rəngi) */
+            --blue-color: #007bff; /* Yeni Məhsul düyməsi üçün */
+            --light-red-color: #fcebeb; /* Açıq Qırmızı */
+            --text-color: #333;
+            --dark-color: #212529; /* Tünd rəng (yeni footer rəngi) */
+        }
+
+        /* --- 1. YUXARI ZOLAQ (TOP BAR) --- */
+        .top-bar {
+            background-color: var(--light-red-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .top-bar .shop-now {
+            color: var(--red-color);
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        /* --- 2. NAVİGASİYA (HEADER/NAV) --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 60px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-area {
+             display: flex;
+             align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            border-bottom: 2px solid var(--red-color);
+        }
+
+        /* Qırmızı 'Shop' düyməsi */
+        .nav-links .shop-btn {
+            background-color: var(--red-color); 
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Axtarış və İkonlar Hissəsi */
+        .actions-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 40px;
+        }
+
+        .search-container {
+            display: flex;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .search-container input {
+            padding: 8px 10px;
+            border: none;
+            width: 180px;
+        }
+        
+        .search-container button {
+            background-color: white;
+            border: none;
+            padding: 8px 10px;
+            cursor: pointer;
+        }
+
+        .icon-btn {
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+        
+        /* Şəkildə görünən Log Out düyməsi */
+        .log-out-btn {
+            background-color: var(--red-color); 
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        /* İstifadəçi adı/profil ikonası */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+
+
+        /* --- 3. ORTA HİSSƏ (PRODUCT DASHBOARD) --- */
+        .main-content {
+            padding: 30px 60px;
+            min-height: 70vh;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Yeni Məhsul Düyməsi (Şəkildəki Mavi Rəngdə) */
+        .add-new-btn {
+            background-color: var(--blue-color); 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        
+        .product-table th {
+            background-color: #f8f8f8;
+            padding: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-color);
+            border-bottom: 2px solid #ddd;
+        }
+
+        .product-table td {
+            padding: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+        
+        .product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
+
+        .rating-stars {
+            color: gold;
+        }
+
+        .action-btns a {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        .action-btns .edit-btn {
+            color: var(--blue-color);
+        }
+
+        .action-btns .delete-btn {
+            color: var(--red-color);
+        }
+
+
+        /* --- 4. AŞAĞI HİSSƏ (FOOTER) --- */
+        /* Şəkildə Footer qara rəngdədir. Mən uyğunlaşdırıram */
+        .main-footer {
+            background-color: var(--dark-color); /* Qara rəngə yaxın */
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-col {
+            padding: 0 10px;
+            flex-basis: 20%;
+        }
+
+        .footer-col h4 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .footer-col p, .footer-col li {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col a {
+            color: white;
+        }
+        
+        .email-input {
+            display: flex;
+            border: 1px solid white;
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .email-input input {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            color: white;
+            width: 100%;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }

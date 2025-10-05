@@ -1,0 +1,272 @@
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .top-bar {
+            background-color: #fcebeb; 
+            color: #333;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .top-bar .shop-now {
+            color: #a94442;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 60px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #a94442;
+        }
+
+        .nav-links .shop-btn {
+            background-color: #fff;
+            border: 1px solid #333;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+
+        .search-and-login {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-and-login input {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            width: 250px;
+            font-size: 14px;
+        }
+
+        .search-and-login button {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-left: none;
+            padding: 8px 10px;
+            cursor: pointer;
+            height: 38px;
+        }
+        
+        .search-icon {
+            font-size: 16px;
+        }
+
+        .log-in-btn {
+            background-color: red;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            margin-left: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        .create-account-box {
+            width: 400px;
+            text-align: center;
+        }
+
+        .create-account-box h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .create-account-box input {
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            border: none;
+            border-bottom: 1px solid #ccc; 
+            font-size: 16px;
+        }
+        
+        .create-account-box input:focus {
+            outline: none; 
+            border-bottom-color: #a94442;
+        }
+        
+        .create-account-box input::placeholder {
+            color: #999;
+        }
+
+        .create-btn {
+            background-color: #a94442; 
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .login-link a {
+            color: #a94442;
+            font-weight: 500;
+        }
+
+        .main-footer {
+            background-color: #a94442; 
+            color: white;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-col {
+            flex: 1;
+            padding: 0 10px;
+        }
+        
+        .footer-col:nth-child(1) { flex-basis: 25%; } 
+        .footer-col:nth-child(4) { flex-basis: 20%; } 
+        .footer-col:nth-child(5) { flex-basis: 25%; } 
+
+        .footer-col h4 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .footer-col h5 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .email-input {
+            display: flex;
+            border: 1px solid white;
+            width: 90%;
+            margin-top: 15px;
+        }
+        
+        .email-input input {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            color: white;
+            width: 100%;
+        }
+        
+        .email-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .email-input button {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .app-stores img {
+            width: 110px;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+        
+        .download-app-col img.qr-code {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        
+        .social-links a {
+            margin-right: 15px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
