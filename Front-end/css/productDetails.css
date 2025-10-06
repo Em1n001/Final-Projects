@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+        /* Sıfırlama və Əsas Stillər */
         * {
             margin: 0;
             padding: 0;
@@ -17,15 +18,19 @@
             color: inherit;
         }
         
+        /* Rəng Dəyişənləri */
         :root {
-            --red-color: #a94442;
-            --light-red-color: #fcebeb; 
+            --red-color: #a94442; /* Əsas Qırmızı */
+            --dark-color: #212529; /* Tünd rəng (Footer üçün) */
             --text-color: #333;
+            --blue-color: #007bff; /* Save düyməsi üçün */
+            --star-color: gold;
         }
 
+        /* --- 1. YUXARI ZOLAQ (TOP BAR) --- */
         .top-bar {
-            background-color: var(--light-red-color);
-            color: var(--text-color);
+            background-color: var(--dark-color); 
+            color: white; 
             text-align: center;
             padding: 8px 0;
             font-size: 14px;
@@ -33,11 +38,12 @@
         }
 
         .top-bar .shop-now {
-            color: var(--red-color);
+            color: #fcebeb; /* Açıq Qırmızımtıl rəngdə ShopNow */
             font-weight: 600;
             margin-left: 5px;
         }
 
+        /* --- 2. NAVİGASİYA (HEADER/NAV) --- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -69,6 +75,7 @@
             border-bottom: 2px solid var(--red-color);
         }
 
+        /* Qırmızı 'Shop' düyməsi */
         .nav-links .shop-btn {
             background-color: var(--red-color); 
             color: white;
@@ -78,6 +85,7 @@
             font-weight: 500;
         }
 
+        /* Axtarış və İkonlar Hissəsi */
         .actions-area {
             display: flex;
             align-items: center;
@@ -110,114 +118,71 @@
             cursor: pointer;
             color: var(--text-color);
         }
-
-        .username-info {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            font-weight: 500;
-            gap: 5px;
-        }
-
-        .log-in-btn {
+        
+        /* Log Out düyməsi */
+        .log-out-btn {
             background-color: var(--red-color); 
             color: white;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
         }
-
-        .main-content {
+        
+        /* İstifadəçi adı/profil ikonası */
+        .user-profile {
             display: flex;
-            gap: 40px;
-            padding: 50px 60px;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+
+
+        /* --- 3. ORTA HİSSƏ (PRODUCT DETAIL CONTENT) --- */
+        .main-content {
+            padding: 60px;
             min-height: 70vh;
         }
-
-        .sidebar {
-            width: 250px;
-            padding: 20px;
-            border-right: 1px solid #eee;
-        }
-
-        .sidebar h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .category-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .category-list li {
-            font-size: 16px;
-            font-weight: 500;
-            padding: 10px 0;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .category-list li:hover, .category-list li.active {
-            color: var(--red-color);
-        }
-
-        .product-display {
-            flex-grow: 1;
-        }
-
-        .display-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .display-header h2 {
-            font-size: 28px;
-            font-weight: 600;
-        }
-
-        .sort-by select {
-            padding: 8px 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .cards{
+        
+        main{
     width: 100%;
+    }
+        .sub-main{
+    width: 85%;
+    margin: auto;
+    /* border: 1px solid black; */
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    gap: 70px;
+    margin-top: 40px;
     }
-        .card{
-    width: 250px;
-    height: 305px;
-    margin-bottom: 15px;
+        .left-side img{
+    width: 550px;
+    height: 500px;
     }
-        .card img{
-    width: 247px;
-    height: 200px;
+        .right-side{
+            margin-top: 100px;
+    margin-left: 500px;
+    padding-top: 80px;
     }
-        .card h5{
+        .right-side h3{
     color: black;
+    font-size: 20px;
     margin-bottom: 5px;
-    margin-top: 5px;
-    height: 20px;
     }
-        .card p{
+          .right-side h4{
     color: black;
-    margin-bottom: 9px;
-    margin-top: 15px;
+    font-size: 20px;
+    margin-bottom: 5px;
     }
-
-
+        .right-side p{
+    color: black;
+    font-size: 20px;
+    margin-bottom: 20px;
+    }
+        /* --- 4. AŞAĞI HİSSƏ (FOOTER) --- */
         .main-footer {
-            background-color: var(--red-color); 
+            background-color: var(--dark-color); 
             color: white;
         }
 

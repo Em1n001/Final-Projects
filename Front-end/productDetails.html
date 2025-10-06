@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce - Məhsul İdarəetmə</title>
-    <link rel="stylesheet" href="./css/myProduct.css">
+    <title>E-commerce - Məhsulun Təfərrüatları</title>
+    <link rel="stylesheet" href="./css/productDetails.css">
 </head>
 <body>
 
     <div class="top-bar">
-        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a>
+        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">Shop now</a>
     </div>
 
     <header class="header">
@@ -20,48 +21,39 @@
                 <li><a href="./home.html">Home</a></li>
                 <li><a href="./contact.html">Contact</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li><a href="./signup.html ">Sign Up</a></li>
+                <li><a href="./signup.html">Sign Up</a></li>
                 <li><a href="./shop.html" class="shop-btn">Shop</a></li>
             </ul>
 
             <div class="actions-area">
                 <div class="search-container">
-                    <input type="text" placeholder="Axtarış...">
+                    <input type="text" placeholder="What are you looking for?">
                     <button><span class="search-icon">🔍</span></button>
                 </div>
-                <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px;"></span></a>
-
-                </div>
                 
+                </div>
+                <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px; margin-left: 10px;"></span></a>
+
                 <button class="log-out-btn">Log out</button>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <div class="dashboard-header">
-            <button class="add-new-btn"><a href="createProduct.html">Yeni Məhsul</a></button>
+    <main>
+        <div class="sub-main">
+           <div class="left-side">
+                <img src="" alt="">
+           </div>
+           <div class="right-side">
+                <a href="#"></a>
+                <h3></h3>
+                <h4></h4>
+                <p></p>
+                <button style="padding: 12px 25px;border: none; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; transition: background-color 0.3s; margin-bottom: 400px; ">Add To Cart</button>
+           </div>
         </div>
-        
-        <table class="product-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Brend</th>
-                    <th>Model</th>
-                    <th>Kateqoriya</th>
-                    <th>Qiymət</th>
-                    <th>Reytinq</th>
-                    <th>Şəkil</th>
-                    <th>Əməliyyatlar</th>
-                </tr>
-            </thead>
-            <tbody id="products-tbody">
-
-            </tbody>
-            
-        </table>
-        
+    </main>
+                   
     </main>
 
     <footer class="main-footer">
@@ -86,11 +78,11 @@
             <div class="footer-col">
                 <h4>Account</h4>
                 <ul>
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Login / Register</a></li>
+                    <li><a href="./userDetails.html">My Account</a></li>
+                    <li><a href="./login.html">Login / Register</a></li>
                     <li><a href="#">Cart</a></li>
                     <li><a href="#">Wishlist</a></li>
-                    <li><a href="#">Shop</a></li>
+                    <li><a href="./shop.html">Shop</a></li>
                 </ul>
             </div>
 
@@ -107,10 +99,10 @@
             <div class="footer-col download-app-col">
                 <h4>Download App</h4>
                 <p>Save $3 with App New User Only</p>
-                <img src=" " alt="QR Code" class="qr-code">
+                <img src="" alt="QR Code" class="qr-code">
                 <div class="app-stores">
-                    <img src=" " alt="Google Play">
-                    <img src=" " alt="App Store">
+                    <img src="" alt="Google Play">
+                    <img src="" alt="App Store">
                 </div>
                 <div class="social-links">
                      <a href="#">F</a> <a href="#">T</a> <a href="#">I</a> <a href="#">in</a> 
@@ -122,7 +114,6 @@
             &copy; Copyright Rimel 2022. All right reserved
         </div>
     </footer>
-        <script src="./js/myProduct.js"></script>
-
+        <script src="./js/productDetails.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+        /* Sıfırlama və Əsas Stillər */
         * {
             margin: 0;
             padding: 0;
@@ -17,15 +18,17 @@
             color: inherit;
         }
         
+        /* Rəng Dəyişənləri */
         :root {
-            --red-color: #a94442;
-            --light-red-color: #fcebeb; 
+            --red-color: #a94442; /* Əsas Qırmızı */
+            --dark-color: #212529; /* Tünd rəng (Header/Footer üçün) */
             --text-color: #333;
         }
 
+        /* --- 1. YUXARI ZOLAQ (TOP BAR) --- */
         .top-bar {
-            background-color: var(--light-red-color);
-            color: var(--text-color);
+            background-color: var(--dark-color); 
+            color: white; 
             text-align: center;
             padding: 8px 0;
             font-size: 14px;
@@ -33,11 +36,12 @@
         }
 
         .top-bar .shop-now {
-            color: var(--red-color);
+            color: #fcebeb; 
             font-weight: 600;
             margin-left: 5px;
         }
 
+        /* --- 2. NAVİGASİYA (HEADER/NAV) --- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -69,6 +73,7 @@
             border-bottom: 2px solid var(--red-color);
         }
 
+        /* Qırmızı 'Shop' düyməsi */
         .nav-links .shop-btn {
             background-color: var(--red-color); 
             color: white;
@@ -78,6 +83,7 @@
             font-weight: 500;
         }
 
+        /* Axtarış və İkonlar Hissəsi */
         .actions-area {
             display: flex;
             align-items: center;
@@ -110,114 +116,177 @@
             cursor: pointer;
             color: var(--text-color);
         }
-
-        .username-info {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            font-weight: 500;
-            gap: 5px;
-        }
-
-        .log-in-btn {
+        
+        /* Log Out düyməsi */
+        .log-out-btn {
             background-color: var(--red-color); 
             color: white;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
         }
-
-        .main-content {
+        
+        /* İstifadəçi adı/profil ikonası */
+        .user-profile {
             display: flex;
-            gap: 40px;
-            padding: 50px 60px;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+        }
+
+        /* --- 3. ORTA HİSSƏ (CART CONTENT) --- */
+        .main-content {
+            padding: 60px;
             min-height: 70vh;
         }
-
-        .sidebar {
-            width: 250px;
-            padding: 20px;
-            border-right: 1px solid #eee;
+        
+        /* Səbət Cədvəli */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
         }
 
-        .sidebar h3 {
-            font-size: 20px;
+        .cart-table th {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        
+        .cart-table td {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        
+        .cart-product {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .cart-product img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 8px 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Naviqasiya Düymələri */
+        .cart-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+        }
+        
+        .cart-navigation button {
+            padding: 12px 25px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        /* Səbət Yekunu (Cart Total) Hissəsi */
+        .cart-summary-area {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .cart-total-box {
+            width: 400px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            padding: 30px;
+        }
+        
+        .cart-total-box h3 {
+            font-size: 24px;
             font-weight: 600;
             margin-bottom: 25px;
         }
-
-        .category-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .category-list li {
-            font-size: 16px;
-            font-weight: 500;
-            padding: 10px 0;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .category-list li:hover, .category-list li.active {
-            color: var(--red-color);
-        }
-
-        .product-display {
-            flex-grow: 1;
-        }
-
-        .display-header {
+        
+        .summary-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+            padding: 10px 0;
+        }
+        
+        .summary-row:first-of-type {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-row:nth-child(2) {
+            border-bottom: 1px solid #eee;
         }
 
-        .display-header h2 {
-            font-size: 28px;
+        .summary-row span:last-child {
             font-weight: 600;
         }
-
-        .sort-by select {
-            padding: 8px 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
+        
+        .summary-row.total-row span {
+            font-weight: 700;
+            font-size: 18px;
         }
 
-        .cards{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    }
-        .card{
-    width: 250px;
-    height: 305px;
-    margin-bottom: 15px;
-    }
-        .card img{
-    width: 247px;
-    height: 200px;
-    }
-        .card h5{
-    color: black;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    height: 20px;
-    }
-        .card p{
-    color: black;
-    margin-bottom: 9px;
-    margin-top: 15px;
-    }
+        .checkout-btn {
+            background-color: var(--red-color);
+            color: white;
+            padding: 12px 0;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 25px;
+            cursor: pointer;
+        }
 
+        /* Kupon Hissəsi */
+        .coupon-area {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
+        .coupon-input {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .apply-coupon-btn {
+            width: 40%;
+            background-color: var(--red-color);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* --- 4. AŞAĞI HİSSƏ (FOOTER) --- */
         .main-footer {
-            background-color: var(--red-color); 
+            background-color: var(--dark-color); 
             color: white;
         }
 

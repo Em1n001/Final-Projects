@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce - Məhsul İdarəetmə</title>
-    <link rel="stylesheet" href="./css/myProduct.css">
+    <title>E-commerce - Səbət</title>
+    <link rel="stylesheet" href="./css/cart.css">
 </head>
 <body>
 
     <div class="top-bar">
-        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a>
+        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">Shop now</a>
     </div>
 
     <header class="header">
@@ -17,50 +17,73 @@
 
         <div class="nav-area">
             <ul class="nav-links">
-                <li><a href="./home.html">Home</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./signup.html ">Sign Up</a></li>
-                <li><a href="./shop.html" class="shop-btn">Shop</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Sign Up</a></li>
+                <li><a href="#" class="shop-btn">Shop</a></li>
             </ul>
 
             <div class="actions-area">
                 <div class="search-container">
-                    <input type="text" placeholder="Axtarış...">
+                    <input type="text" placeholder="What are you looking for?">
                     <button><span class="search-icon">🔍</span></button>
                 </div>
-                <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px;"></span></a>
-
-                </div>
                 
+                </div>
+                <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px; margin-left: 10px;"></span></a>
+
                 <button class="log-out-btn">Log out</button>
             </div>
         </div>
     </header>
 
     <main class="main-content">
-        <div class="dashboard-header">
-            <button class="add-new-btn"><a href="createProduct.html">Yeni Məhsul</a></button>
-        </div>
         
-        <table class="product-table">
+        <table class="cart-table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Brend</th>
-                    <th>Model</th>
-                    <th>Kateqoriya</th>
-                    <th>Qiymət</th>
-                    <th>Reytinq</th>
-                    <th>Şəkil</th>
-                    <th>Əməliyyatlar</th>
+                    <th style="width: 30%;">Məhsul</th>
+                    <th style="width: 30%;">Qiymət</th>
+                    <th style="width: 60%; text-align: center;">Say</th>
+                    <th style="width: 20%; text-align: right;">Cəm</th>
                 </tr>
             </thead>
-            <tbody id="products-tbody">
-
+            <tbody>
+                
             </tbody>
-            
         </table>
+        
+        <div class="cart-navigation">
+            <button>Alış-verişə Davam Et</button>
+            <button>Səbəti Yenilə</button>
+        </div>
+
+        <div class="cart-summary-area">
+            <div class="cart-total-box">
+                <div class="coupon-area">
+                    <input type="text" placeholder="Kupon Kodu" class="coupon-input">
+                    <button class="apply-coupon-btn">Kuponu Tətbiq Et</button>
+                </div>
+
+                <h3>Səbət Yekunu</h3>
+                
+                <div class="summary-row">
+                    <span>Aralıq Cəm:</span>
+                    <span></span>
+                </div>
+                <div class="summary-row">
+                    <span>Çatdırılma:</span>
+                    <span></span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Ümumi Cəm:</span>
+                    <span></span>
+                </div>
+                
+                <button class="checkout-btn">Ödənişə Keçid</button>
+            </div>
+        </div>
         
     </main>
 
@@ -107,10 +130,10 @@
             <div class="footer-col download-app-col">
                 <h4>Download App</h4>
                 <p>Save $3 with App New User Only</p>
-                <img src=" " alt="QR Code" class="qr-code">
+                <img src="https://via.placeholder.com/90x90?text=QR+Code" alt="QR Code" class="qr-code">
                 <div class="app-stores">
-                    <img src=" " alt="Google Play">
-                    <img src=" " alt="App Store">
+                    <img src="https://via.placeholder.com/90x30?text=Google+Play" alt="Google Play">
+                    <img src="https://via.placeholder.com/90x30?text=App+Store" alt="App Store">
                 </div>
                 <div class="social-links">
                      <a href="#">F</a> <a href="#">T</a> <a href="#">I</a> <a href="#">in</a> 
@@ -122,7 +145,6 @@
             &copy; Copyright Rimel 2022. All right reserved
         </div>
     </footer>
-        <script src="./js/myProduct.js"></script>
-
+        <script src="./js/cart.js"></script>
 </body>
 </html>

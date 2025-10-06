@@ -19,6 +19,7 @@ function showProducts(){
 
                 let cardDiv = document.createElement('div');
                 cardDiv.classList.add('card');
+                cardDiv.setAttribute('data-id',element.id);
 
                 let imgDiv = document.createElement('div');
 
@@ -33,6 +34,16 @@ function showProducts(){
 
                 let addToCardBtn = document.createElement('button');
                 addToCardBtn.textContent = 'add to card';
+                addToCardBtn.setAttribute('data-id', element.id);
+
+                addToCardBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    let productId = addToCardBtn.getAttribute('data-id');
+                    console.log(productId);
+
+                    addToCard(productId);
+                })
+
                 addToCardBtn.style.backgroundColor = 'black';
                 addToCardBtn.style.color = 'white';
                 addToCardBtn.style.border = 'none';
@@ -89,6 +100,7 @@ function searchProduct(){
 
                 let p = document.createElement('p');
                 p.textContent = element.price + " AZN";
+                p.style.marginLeft = '20px';
 
                 let addToCardBtn = document.createElement('button');
                 addToCardBtn.textContent = 'add to card';
@@ -176,3 +188,34 @@ function searchProduct(){
 // }
 
 // sortProducts();
+
+document.addEventListener('click', (e) =>{
+    if(e.target.closest('.card')) {
+     let productId = e.target.closest('.card').getAttribute('data-id');
+     console.log(productId);   
+
+     window.location.href = `productDetails.html?id=${productId}`;
+    }
+})
+
+function addToCart(productId){
+
+    const token = localStorage.getItem('token');
+
+    const cart = {
+        productId: productId
+    }
+
+    fetch(`http://localhost:8085/cart/add`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'   
+        },
+        body: JSON.stringify(cart)
+    })
+    .then(async response => {
+        let message = await response.text();
+        alert(message);
+    })
+}
