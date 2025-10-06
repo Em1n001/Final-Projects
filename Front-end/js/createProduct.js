@@ -89,16 +89,16 @@ function updateProduct() {
 
     const productForm = document.querySelector('form');
 
-   // const productId = localStorage.getItem('productId');
+    const productId = localStorage.getItem('productId');
 
-    //const product = {
-       // id: productId,
-      //  model: document.getElementById('product-model'),
-      //  brand: document.getElementById('product-brand'),
-      //  price: document.getElementById('product-price'),
-      //  category: document.getElementById('product-category'),
-      //  image: document.getElementById('product-image'),
-      //  rating: document.getElementById('product-rating')
+    const product = {
+        id: productId,
+        model: document.getElementById('product-model'),
+        brand: document.getElementById('product-brand'),
+        price: document.getElementById('product-price'),
+        category: document.getElementById('product-category'),
+        image: document.getElementById('product-image'),
+        rating: document.getElementById('product-rating')
     }
 
     productForm.addEventListener('submit', (e) => {
@@ -129,4 +129,4 @@ function updateProduct() {
                 }
             })
     })
-        
+}
