@@ -1,14 +1,19 @@
 package com.example.Final_project.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Final_project.RequestDto.CartRequestDto;
+import com.example.Final_project.Response.CartResponseDto;
 import com.example.Final_project.Service.CartService;
 
 
@@ -25,4 +30,16 @@ public class CartController {
 		cartService.addToCart(dto);
 		return ResponseEntity.ok("Product add to cart successfully");
 	}
+	
+	@GetMapping(path = "/getCart")
+	public List<CartResponseDto> getCart(){
+		return cartService.getCart();
+	}
+	
+	@PutMapping(path = "/update")
+	public void update(@RequestBody CartRequestDto dto) {
+		cartService.update(dto);
+	}
+	
+	
 }

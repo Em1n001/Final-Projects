@@ -12,12 +12,13 @@ function addProduct() {
             brand: document.getElementById('product-brand').value,
             price: document.getElementById('product-price').value,
             category: document.getElementById('product-category').value,
+            description: document.getElementById('product-description').value,
             image: document.getElementById('product-image').value,
             rating: document.getElementById('product-rating').value
         }
 
         const productId = localStorage.getItem('productId');
-        //localStorage.removeItem('productId');
+        localStorage.removeItem('productId');
 
         if (productId) {
             updateProduct(product, productId);
@@ -37,6 +38,7 @@ function addProduct() {
                         document.getElementById('product-brand').value = '';
                         document.getElementById('product-price').value = '';
                         document.getElementById('product-category').value = '';
+                        document.getElementById('product-description').value = '';
                         document.getElementById('product-image').value = '';
                         document.getElementById('product-rating').value = '';
                         window.location.href = `myProduct.html`
@@ -72,6 +74,7 @@ function editProduct() {
                     document.getElementById('product-brand').value = object.brand;
                     document.getElementById('product-price').value = object.price;
                     document.getElementById('product-category').value = object.category;
+                    document.getElementById('product-description').value = object.description;
                     document.getElementById('product-image').value = object.image;
                     document.getElementById('product-rating').value = object.rating;
 
@@ -93,12 +96,13 @@ function updateProduct() {
 
     const product = {
         id: productId,
-        model: document.getElementById('product-model'),
-        brand: document.getElementById('product-brand'),
-        price: document.getElementById('product-price'),
-        category: document.getElementById('product-category'),
-        image: document.getElementById('product-image'),
-        rating: document.getElementById('product-rating')
+        model: document.getElementById('product-model').value,
+        brand: document.getElementById('product-brand').value,
+        price: document.getElementById('product-price').value,
+        category: document.getElementById('product-category').value,
+        description: document.getElementById('product-description').value,
+        image: document.getElementById('product-image').value,
+        rating: document.getElementById('product-rating').value
     }
 
     productForm.addEventListener('submit', (e) => {
@@ -117,6 +121,7 @@ function updateProduct() {
                 model:product.model,
                 category:product.category,
                 price:product.price,
+                description:product.description,
                 rating:product.rating,
                 image:product.image
             })

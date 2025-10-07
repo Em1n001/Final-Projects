@@ -1,17 +1,21 @@
-package com.example.Final_project.RequestDto;
+package com.example.Final_project.Response;
+
+import com.example.Final_project.entity.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartRequestDto {
+public class CartResponseDto {
 	private Integer id;
-	private Integer productId;
 	private Integer quantity;
 	private Double subTotal;
-}
+	private Product product;
+	
+	private Integer userId;
+} 

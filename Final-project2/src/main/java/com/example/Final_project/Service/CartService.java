@@ -1,5 +1,8 @@
 package com.example.Final_project.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import com.example.Final_project.Repository.CartRepository;
 import com.example.Final_project.Repository.ProductRepository;
 import com.example.Final_project.Repository.UserRepository;
 import com.example.Final_project.RequestDto.CartRequestDto;
+import com.example.Final_project.Response.CartResponseDto;
 import com.example.Final_project.entity.Cart;
 import com.example.Final_project.entity.Product;
 import com.example.Final_project.entity.User;
@@ -41,5 +45,39 @@ public class CartService {
 		cart.setUserId(id);
 		cartRepository.save(cart);
 	}
+
+		public List<CartResponseDto> getCart() {
+		
+			String username = SecurityContextHolder.getContext().getAuthentication().getName();
+			User user = userRepository.getUserByUsername(username);
+			Integer id = user.getId();
+			
+		List<Cart> carts = cartRepository.findAllByUserId(id);
+		return carts.stream().map(cart -> {
+			CartResponseDto response = new CartResponseDto();
+			response.setId(cart.getId());
+			response.setProduct(cart.getProduct());
+			response.setQuantity(cart.getQuantity());
+			response.setUserId(cart.getUserId());
+			response.setSubTotal(cart.getSubTotal());
+			response.setUserId(id);
+			return response;
+		})
+				.collect(Collectors.toList());
+	}
+
+		public void update(CartRequestDto dto) {
+			Cart cart = cartRepository.findById(dto.getId())
+			.orElseThrow(() -> new OurRuntimeException(null, "cart not found"));
+			
+			Integer quantity = (dto.getQuantity() == null || dto.getQuantity() <= 0)? 1 : dto.getQuantity();
+			
+			cart.setQuantity(quantity);
+			
+			Double subTotal = cart.getProduct().getPrice() * quantity;
+			
+			cart.setSubTotal(subTotal);
+			cartRepository.save(cart);
+		}
 
 }

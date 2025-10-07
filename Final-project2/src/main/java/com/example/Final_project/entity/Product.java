@@ -26,6 +26,7 @@ public class Product {
 	private String brand;
 	private String model;
 	private String category;
+	
 	private Integer rating;
 	@Column(columnDefinition = "TEXT")
 	private String description;

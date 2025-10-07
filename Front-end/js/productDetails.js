@@ -19,13 +19,13 @@ function getProduct(){
         img.src = object.image;
 
         let h3 = document.querySelector('.right-side h3');
-        h3.textContent = object.brand;
+        h3.textContent = object.brand + " - " + object.model + " " + "->" + " " + "( Stokda Mövcuddur )";
 
-        let h4 = document.querySelector('.right-side h4');
-        h4.textContent = object.model;
+        let a = document.querySelector('.right-side a');
+        a.textContent = object.description ;
 
         let p = document.querySelector('.right-side p');
-        p.textContent = object.price + " AZN";
+        p.textContent = "Price :"+ " "+object.price + " AZN";
     })
 
 }

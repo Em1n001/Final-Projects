@@ -8,4 +8,6 @@ import com.example.Final_project.entity.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Integer>{
 
+	List<Cart> findAllByUserId(Integer id);
+
 }
