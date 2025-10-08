@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce - Ödənişə Keçid</title>
+    <link rel="stylesheet" href="./css/checkout.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a>
+    </div>
+
+    <header class="header">
+        <div class="logo">E-commerce</div>
+
+        <div class="nav-area">
+            <ul class="nav-links">
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./signup.html">Sign Up</a></li>
+                <li><a href="./shop.html" class="shop-btn">Shop</a></li>
+            </ul>
+
+            <div class="actions-area">
+                <input type="text" placeholder="what are you looking for?" style="padding: 8px 10px; border: 1px solid #eee; border-radius: 4px;">
+                <button style="background: white; border: none; padding: 8px 0; cursor: pointer;">🔍</button>
+                <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 25px; margin-top: 10px; margin-right: 10px;margin-left: 0px;"></span></a>
+                <span class="icon-btn"><a href="./cart.html"><img src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" alt="" style="width: 25px; margin-top: 10px; margin-right: 10px;"></span></a>
+                <button class="log-in-btn">Log in</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="checkout-container">
+            <h2>Checkout</h2>
+            
+            <div class="checkout-layout">
+                
+                <div class="form-section">
+                    <h3>Hesab Məlumatları</h3>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">Ad</label>
+                                <input type="text" id="Name" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Soyad</label>
+                                <input type="text" id="Surname" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">Ölkə</label>
+                                <select name="" id="state" autocomplete="off">
+                                    <option value="Azerbaijan">Azerbaijan</option>
+                                    <option value="Turkiye">Turkiye</option>
+                                    <option value="Ingiltere">Ingiltere</option>
+                                    <option value="Rusiya">Rusiya</option>
+                                    <option value="Ispanya">Ispanya</option>
+                                    <option value="Ozbekistan">Ozbekistan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Şəhər</label>
+                                <input type="text" id="city" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address">Ünvan</label>
+                                <input type="text" id="address" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zipCode">Poçt İndeksi</label>
+                                <input type="text" id="zipCode" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="text" id="phone" autocomplete="off">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" id="email" autocomplete="off">
+                            </div>
+                        </div>
+                        
+                        <h3 style="margin-top: 50px;">Ödəniş Məlumatları</h3>
+
+                        <div class="card-details">
+                             <div class="card-input-group">
+                                <label for="cartNumber" style="color: var(--text-color); font-weight: 500;">Kart Nömrəsi</label>
+                                <input type="text" id="cartNumber" placeholder="0000 0000 0000 0000">
+                             </div>
+                             <div class="card-icons">
+                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Former_Visa_%28company%29_logo.svg/2560px-Former_Visa_%28company%29_logo.svg.png" alt="Visa">
+                                 <img src="https://www.investopedia.com/thmb/F8CKM3YkF1fmnRCU2g4knuK0eDY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MClogo-c823e495c5cf455c89ddfb0e17fc7978.jpg" alt="Mastercard">
+                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/250px-American_Express_logo_%282018%29.svg.png" alt="Amex">
+                                 <img src="https://1000logos.net/wp-content/uploads/2021/05/Discover-logo.png" alt="Discover">
+                             </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiryMonth">Son İstifadə Ayı (MM)</label>
+                                <input type="text" id="expiryMonth" placeholder="MM" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="expiryYear">Son İstifadə İli (YY)</label>
+                                <input type="text" id="expiryYear" placeholder="YY" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvc">CVC Kodu</label>
+                                <input type="text" id="cvc" placeholder="CVC" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="terms-checkbox">
+                             <input type="checkbox" id="terms">
+                             <label for="terms">Şərtlər və Qaydalar ilə razıyam</label>
+                        </div>
+                        
+                    </form>
+                </div>
+                
+                <div class="summary-section">
+                    <h3>Sifariş Xülasəsi</h3>
+
+                    <div class="summary-table">
+
+                        <div class="summary-row subtotal">
+                            <span>Aralıq Cəm:</span>
+                            <span></span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Çatdırılma:</span>
+                            <span>Pulsuz</span>
+                        </div>
+                        
+                        <div class="summary-row total-row">
+                            <span>Ümumi Cəm:</span>
+                            <span style="color: var(--red-color);"></span>
+                        </div>
+                    </div>
+                    
+                    <button id="place-order-btn">Sifarişi Tamamla</button>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Exclusive</h4>
+                <h5>Subscribe</h5>
+                <p>Get 10% off your first order</p>
+                <div class="email-input">
+                    <input type="email" placeholder="Enter your email">
+                    <button>→</button>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+                <p>exclusive@gmail.com</p>
+                <p>+88015-88888-9999</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="./userDetails.html">My Account</a></li>
+                    <li><a href="./login.html">Login / Register</a></li>
+                    <li><a href="./cart.html">Cart</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="./shop.html">Shop</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Link</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms Of Use</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col download-app-col">
+                <h4>Download App</h4>
+                <p>Save $3 with App New User Only</p>
+                <img src="" alt="QR Code" class="qr-code">
+                <div class="app-stores">
+                    <img src="" alt="Google Play">
+                    <img src="" alt="App Store">
+                </div>
+                <div class="social-links">
+                     <a href="#">F</a> <a href="#">T</a> <a href="#">I</a> <a href="#">in</a> 
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; Copyright Rimel 2022. All right reserved
+        </div>
+    </footer>
+        <script src="./js/checkout.js"></script>
+</body>
+</html>

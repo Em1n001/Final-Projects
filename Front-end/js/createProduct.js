@@ -18,7 +18,6 @@ function addProduct() {
         }
 
         const productId = localStorage.getItem('productId');
-        localStorage.removeItem('productId');
 
         if (productId) {
             updateProduct(product, productId);

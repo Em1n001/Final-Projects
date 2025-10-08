@@ -80,4 +80,16 @@ public class CartService {
 			cartRepository.save(cart);
 		}
 
+		public void delete(Integer id) {
+			if (id == null || id <= 0) {
+				throw new OurRuntimeException(null, "id absolute");
+			}
+			if (cartRepository.findById(id).isPresent()) {
+				cartRepository.deleteById(id);
+			}else {
+				throw new OurRuntimeException(null, "id not found");
+			}
+			
+		}
+
 }
