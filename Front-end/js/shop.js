@@ -96,7 +96,7 @@ function searchProduct(){
                 image.src = element.image;
 
                 let h5 = document.createElement('h5');
-                h5.textContent = element.name;
+                h5.textContent = element.brand;
 
                 let p = document.createElement('p');
                 p.textContent = element.price + " AZN";
@@ -159,7 +159,7 @@ function searchProduct(){
                  image.src = element.image;
 
                  let h5 = document.createElement('h5');
-                 h5.textContent = element.name;
+                 h5.textContent = element.brand;
 
                  let p = document.createElement('p');
                  p.textContent = element.price + " AZN";
@@ -219,3 +219,82 @@ function addToCart(productId){
         alert(message);
     })
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const categoryFiltersDiv = document.getElementById('category-filters');
+    const productContainer = document.getElementById('product-container');
+
+    const categories = new Set(products.map(p => p.category));
+    
+    if (categoryFiltersDiv) {
+        
+        categories.forEach(category => {
+            if (category) { 
+                const filterLink = document.createElement('a');
+                filterLink.href = '#';
+                filterLink.className = 'filter-item';
+                filterLink.setAttribute('data-category', category);
+                filterLink.textContent = category;
+                categoryFiltersDiv.appendChild(filterLink);
+                // a.addEventListener('click', (e) =>{
+                    
+                // })
+            }
+        });
+        
+        categoryFiltersDiv.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-item')) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.filter-item').forEach(link => link.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                const selectedCategory = e.target.getAttribute('data-category');
+                displayProducts(selectedCategory); 
+            }
+        });
+    }
+
+    // 4. Məhsulları göstərən əsas funksiya
+    function displayProducts() {
+        let categories = document.querySelectorAll("#category-filters a")
+        categories.forEach(category => {
+            category.addEventListener('click', (e) =>{
+                console.log(e.target.textContent);
+            })
+        })
+
+        productContainer.innerHTML = ''; 
+
+        if (filterCategory = 'all') {
+
+        }
+
+        const filteredProducts = products.filter(p => 
+            filterCategory === 'all' || p.category === filterCategory
+        );
+
+        if (filteredProducts.length === 0) {
+            productContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #777;">Bu kateqoriyada məhsul tapılmadı.</p>';
+            return;
+        }
+
+        filteredProducts.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.innerHTML = `
+                <div class="product-image-box">
+                    <img src="${product.image || 'https://via.placeholder.com/200x200?text=No+Image'}" alt="${product.model}">
+                </div>
+                <div class="product-details">
+                    <p class="product-model">${product.model}</p>
+                    <div class="product-price">${product.price} AZN</div>
+                    <button class="add-to-cart-btn">Səbətə At</button>
+                </div>
+            `;
+            productContainer.appendChild(productCard);
+        });
+    }
+    
+    displayProducts('all');
+});

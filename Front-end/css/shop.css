@@ -209,11 +209,12 @@
     margin-top: 5px;
     height: 20px;
     }
-        .card p{
-    color: black;
-    margin-bottom: 9px;
-    margin-top: 15px;
-    }
+
+    .card p {
+    color: var(--red-color); /* Qiyməti qırmızı rəngdə vurğulamaq */
+    font-size: 16px;
+    font-weight: 700;
+}
 
 
         .main-footer {
@@ -278,3 +279,145 @@
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
         }
+
+        /* Shop səhifəsinin CSS-inə əlavə ediləcək */
+.category-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--red-color); /* Qırmızı xətt əlavə etmək üçün */
+    padding-bottom: 5px;
+}
+
+#category-filters {
+    display: flex; /* Yanaşı və ya sütun şəklində olmasına görə dəyişə bilər */
+    flex-direction: column; 
+    gap: 10px;
+}
+
+.filter-item {
+    font-size: 15px;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.filter-item:hover {
+    color: var(--red-color);
+}
+
+.filter-item.active {
+    font-weight: 600;
+    color: var(--red-color); /* Aktiv kateqoriyanı qırmızı ilə göstərir */
+    border-left: 3px solid var(--red-color); /* Vurğulamaq üçün qırmızı zolaq */
+    padding-left: 10px;
+}
+
+/* Məhsul şəbəkəsi üçün (image_9ef06e.png-dəki kimi) */
+#product-container {
+    width: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Rəng Dəyişənləri (Əsasən qırmızı və tünd rənglər) */
+:root {
+    --red-color: #a94442; 
+    --text-color: #333;
+}
+
+/* --- 1. MƏHSUL QALEREYASI SAHƏSİ (GRID) --- */
+
+.product-gallery-area {
+    flex-grow: 1; /* Qalereya sahəsinin sol sidebar-dan sonra qalan sahəni tutmasını təmin edir */
+}
+
+/* shop.html-də mövcud CSS stil blokunuza əlavə edin və ya yoxlayın */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 30px; 
+    width: 100%; 
+}
+
+.product-card {
+    width: 100%; 
+
+    position: relative;
+    box-sizing: border-box; 
+}
+
+/* Kart üzərinə gələndə kölgə effekti */
+.product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+/* Şəkil Konteyneri */
+.product-image-box {
+    background-color: #f7f7f7; /* Açıq boz fon */
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.product-image-box img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain; /* Şəkilin konteynerə sığmasını təmin edir */
+}
+
+/* Arzu siyahısı (Wishlist) İkonu */
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border-radius: 50%;
+    padding: 5px 6px;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--red-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Məhsul Detalları Sahəsi */
+.product-details {
+    padding: 5px 0;
+}
+
+.product-model {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: var(--text-color);
+}
+
+.product-category {
+    font-size: 12px;
+    color: #777;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.price-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    color: var(--red-color); 
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.product-rating {
+    font-size: 14px;
+    color: gold; 
+}

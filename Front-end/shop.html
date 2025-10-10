@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="az">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce - Shop</title>
     <link rel="stylesheet" href="./css/shop.css">
 </head>
+
 <body>
 
     <div class="top-bar">
@@ -26,32 +28,41 @@
 
             <div class="actions-area">
                 <div class="search-container">
-                    <input type="text" placeholder="What are you looking for?" id="searchInput" oninput="searchProduct()">
+                    <input type="text" placeholder="What are you looking for?" id="searchInput"
+                        oninput="searchProduct()">
                     <button><span class="search-icon">🔍</span></button>
-                </div>     
-                <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px;"></span></a>
-                <span class="icon-btn"><a href="./cart.html"><img src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px; margin-left: 10px;"></span></a>
+                </div>
+                <span class="icon-btn"><a href="./userDetails.html"><img
+                            src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt=""
+                            style="width: 30px; margin-top: 10px; margin-right: 10px;"></span></a>
+                <span class="icon-btn"><a href="./cart.html"><img
+                            src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" alt=""
+                            style="width: 30px; margin-top: 10px; margin-right: 10px; margin-left: 10px;"></span></a>
             </div>
-                
-                <button class="log-in-btn"><a href="./signup.html">log out</a></button>
-            </div>
+
+            <button class="log-in-btn"><a href="./signup.html">log out</a></button>
+        </div>
         </div>
     </header>
 
     <main class="main-content">
-        
-        <div class="sidebar">
-            <h3>Category</h3>
-            <ul class="category-list">
-                
-            </ul>
+
+        <div class="category-list">
+            <h4 class="category-title">Kateqoriyalar</h4>
+            <div id="category-filters">
+                <a href="#" class="filter-item active" data-category="all">Hamısı</a>
+            </div>
         </div>
-        
+
+        <!-- <div id="product-container" class="product-grid">
+
+        </div> -->
+
         <div class="product-display">
             <div class="display-header">
                 <h2>Shop</h2>
                 <div class="sort-by">
-                    Sort by: 
+                    Sort by:
                     <select id="sortSelect">
                         <option value="price">Sort By</option>
                         <option value="priceAsc">Sort By: Price(Low to High)</option>
@@ -59,13 +70,13 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="sub-main">
-            <div class="cards">
-                
+                <div class="cards">
+
+                </div>
+
             </div>
-            
-        </div>
     </main>
 
     <footer class="main-footer">
@@ -107,7 +118,7 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-col download-app-col">
                 <h4>Download App</h4>
                 <p>Save $3 with App New User Only</p>
@@ -117,7 +128,7 @@
                     <img src="" alt="App Store">
                 </div>
                 <div class="social-links">
-                     <a href="#">F</a> <a href="#">T</a> <a href="#">I</a> <a href="#">in</a> 
+                    <a href="#">F</a> <a href="#">T</a> <a href="#">I</a> <a href="#">in</a>
                 </div>
             </div>
         </div>
@@ -126,6 +137,7 @@
             &copy; Copyright Rimel 2022. All right reserved
         </div>
     </footer>
-            <script src="./js/shop.js"></script>
+    <script src="./js/shop.js"></script>
 </body>
+
 </html>
