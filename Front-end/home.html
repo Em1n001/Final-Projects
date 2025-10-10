@@ -34,7 +34,7 @@
                  <span class="icon-btn"><a href="./cart.html"><img src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" alt="" style="width: 30px; margin-top: 10px; margin-right: 10px; margin-left: 10px;"></span></a>
                 </div>
                 
-                <button class="log-out-btn"><a href="./signup.html">log out</a></button>
+                <button id="log-out-btn"><a href="">log out</a></button>
             </div>
         </div>
     </header>
@@ -230,68 +230,6 @@
         </div>
     </section>
 
-// home.html - </body> teqindən əvvəl
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const wrapper = document.getElementById('slider-wrapper');
-    const slides = document.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('slider-dots');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-
-    // Slaydı göstərən əsas funksiya
-    function goToSlide(index) {
-        // İndeksi toplam slayd sayına görə döngüyə salmaq
-        if (index >= totalSlides) {
-            currentIndex = 0;
-        } else if (index < 0) {
-            currentIndex = totalSlides - 1;
-        } else {
-            currentIndex = index;
-        }
-
-        // CSS transform xüsusiyyəti ilə slaydı hərəkət etdirmək
-        const offset = -currentIndex * 100;
-        wrapper.style.transform = `translateX(${offset}%)`;
-
-        // Aktiv nöqtəni yeniləmək
-        updateDots();
-    }
-
-    // Nöqtələri yeniləyən funksiya
-    function updateDots() {
-        dots.forEach((dot, index) => {
-            dot.classList.remove('active');
-            if (index === currentIndex) {
-                dot.classList.add('active');
-            }
-        });
-    }
-
-    // Növbəti slayd
-    nextBtn.addEventListener('click', () => {
-        goToSlide(currentIndex + 1);
-    });
-
-    // Əvvəlki slayd
-    prevBtn.addEventListener('click', () => {
-        goToSlide(currentIndex - 1);
-    });
-
-    // Nöqtəyə klikləmə
-    dotsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('dot')) {
-            const slideIndex = parseInt(e.target.getAttribute('data-slide'));
-            goToSlide(slideIndex);
-        }
-    });
-
-});
-</script>
-
-</body>
+<script src="./js/home.js"></script>
+</body> 
 </html>

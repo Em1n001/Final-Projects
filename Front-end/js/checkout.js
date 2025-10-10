@@ -1,4 +1,3 @@
-
 const token = localStorage.getItem('token');
 
 document.getElementById('place-order-btn').addEventListener('click', () => {
@@ -17,15 +16,15 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
     let cvc = document.getElementById('cvc').value;
 
     let cartIds = JSON.parse(localStorage.getItem('cartIdss'));
-})
 
     if (cartIds) {
         let promises = cartIds.map(cartId => {
             const order = {
                 cartId: cartId,
-                name: firstName,
-                surname: lastName,
-                country: state,
+                cartId: cartId,
+                Name: Name,
+                Surname: Surname,
+                state: state,
                 city: city,
                 address: address,
                 phone: phone,
@@ -33,9 +32,10 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
                 cartNumber: cartNumber,
                 zipCode: zipCode,
                 expiryMonth: expiryMonth,
-                expiryYear: expiryYear
+                expiryYear: expiryYear,
+                cvc: cvc
             }
-            return fetch(`http://localhost:8085/orders/add`, {
+            return fetch(`http://localhost:8086/orders/add`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -51,6 +51,7 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
                 let response = responses.find(resp => resp.ok);
                 if (response) {
                     let message = await response.text();
+                    // alert(message);
                     Swal.fire({
                         title: message,
                         icon: "success",
@@ -64,19 +65,7 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
                         color: '#155724',
                     });
 
-                    // document.getElementById('firstName').value = "";
-                    // document.getElementById('lastName').value = "";
-                    // document.getElementById('country').value = "";
-                    // document.getElementById('address').value = "";
-                    // document.getElementById('city').value = "";
-                    // document.getElementById('phone').value = "";
-                    // document.getElementById('email').value = "";
-                    // document.getElementById('cartNumber').value = "";
-                    // document.getElementById('zipCode').value = "";
-                    // document.getElementById('expiryMonth').value = "";
-                    // document.getElementById('expiryYear').value = "";
-
-                    document.getElementById('Name').value  = "";
+                    document.getElementById('Name').value = "";
                     document.getElementById('Surname').value = "";
                     document.getElementById('state').value = "";
                     document.getElementById('city').value = "";
@@ -138,4 +127,44 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
                 }
             })
     }
+
+})
+
+function getSubTotal() {
+    fetch(`http://localhost:8085/cart/getCart`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(async response => {
+            let data = await response.json();
+            console.log(data);
+
+            let cartIds = JSON.parse(localStorage.getItem('cartIdss'));
+
+            if (cartIds) {
+                let total = 0;
+
+                cartIds.forEach(cartId => {
+                    let item = data.find(cart => cart.id === cartId);
+                    if (item) {
+                        total += item.subTotal;
+                    }
+                });
+
+                document.getElementById('sub-total').textContent = total + " AZN";
+                document.getElementById('total').textContent = total + " AZN";
+
+            }
+
+
+        })
+}
+
+getSubTotal()
+
+document.getElementById('log-out-btn').addEventListener('click', () => {
+    localStorage.removeItem('token');
+})
 

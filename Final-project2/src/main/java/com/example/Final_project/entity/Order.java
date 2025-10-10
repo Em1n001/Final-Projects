@@ -33,6 +33,7 @@ public class Order {
 	private String zipCode;	
 	private String expiryMonth;
 	private Integer expiryYear;
+	private String cvc;
 	
 	@ManyToOne
 	private Cart cart;

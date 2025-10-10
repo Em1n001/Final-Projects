@@ -35,6 +35,7 @@ public class OrderService {
 		order.setExpiryMonth(dto.getExpiryMonth());
 		order.setExpiryYear(dto.getExpiryYear());
 		order.setZipCode(dto.getZipCode());;
+		order.setCvc(dto.getCvc());
 		order.setCart(cart);
 		orderRepository.save(order);
 	}

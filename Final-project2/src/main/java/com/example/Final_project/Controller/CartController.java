@@ -47,4 +47,5 @@ public class CartController {
 	public void deleteFromCart(@PathVariable Integer id) {
 		cartService.delete(id);
 	}
+	
 }
