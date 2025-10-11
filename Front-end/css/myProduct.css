@@ -122,7 +122,7 @@
         }
         
         /* Şəkildə görünən Log Out düyməsi */
-        .log-out-btn {
+        #log-out-btn {
             background-color: var(--red-color); 
             color: white;
             padding: 8px 15px;

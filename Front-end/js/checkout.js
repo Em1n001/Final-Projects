@@ -1,3 +1,4 @@
+
 const token = localStorage.getItem('token');
 
 document.getElementById('place-order-btn').addEventListener('click', () => {
@@ -24,7 +25,7 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
                 cartId: cartId,
                 Name: Name,
                 Surname: Surname,
-                state: state,
+                country: state,
                 city: city,
                 address: address,
                 phone: phone,
@@ -35,7 +36,7 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
                 expiryYear: expiryYear,
                 cvc: cvc
             }
-            return fetch(`http://localhost:8086/orders/add`, {
+            return fetch(`http://localhost:8085/orders/add`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

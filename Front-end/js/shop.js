@@ -1,4 +1,3 @@
-
 function showProducts(){
     const token = localStorage.getItem('token');
 
@@ -219,82 +218,116 @@ function addToCart(productId){
         alert(message);
     })
 }
-document.addEventListener('DOMContentLoaded', () => {
-    const products = JSON.parse(localStorage.getItem('products')) || [];
-    const categoryFiltersDiv = document.getElementById('category-filters');
-    const productContainer = document.getElementById('product-container');
 
-    const categories = new Set(products.map(p => p.category));
+
+function getAllcategory(){
     
-    if (categoryFiltersDiv) {
-        
-        categories.forEach(category => {
-            if (category) { 
-                const filterLink = document.createElement('a');
-                filterLink.href = '#';
-                filterLink.className = 'filter-item';
-                filterLink.setAttribute('data-category', category);
-                filterLink.textContent = category;
-                categoryFiltersDiv.appendChild(filterLink);
-                // a.addEventListener('click', (e) =>{
-                    
-                // })
-            }
-        });
-        
-        categoryFiltersDiv.addEventListener('click', (e) => {
-            if (e.target.classList.contains('filter-item')) {
-                e.preventDefault();
-                
-                document.querySelectorAll('.filter-item').forEach(link => link.classList.remove('active'));
-                e.target.classList.add('active');
-                
-                const selectedCategory = e.target.getAttribute('data-category');
-                displayProducts(selectedCategory); 
-            }
-        });
-    }
+    const token = localStorage.getItem('token');
 
-    // 4. Məhsulları göstərən əsas funksiya
-    function displayProducts() {
-        let categories = document.querySelectorAll("#category-filters a")
-        categories.forEach(category => {
-            category.addEventListener('click', (e) =>{
-                console.log(e.target.textContent);
-            })
+    fetch(`http://localhost:8085/products/all`, {
+        headers:{
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then((response) => {
+        return response.json()
+    })
+    .then(data => {
+
+        // console.log(data);
+        let uniqueCategory = new Set();
+
+        data.products.forEach(product => {
+            uniqueCategory.add(product.category);            
         })
 
-        productContainer.innerHTML = ''; 
+        uniqueCategory.forEach(category => {
+            
+            let newCategory = document.createElement('a');
+            newCategory.textContent = category;
+            newCategory.style.cursor = "pointer";
 
-        if (filterCategory = 'all') {
+            newCategory.addEventListener('click', (e) => {
+                console.log(e.target.textContent);
+                filterproductsByCategory(category);
+                
+            })
+            
+            document.getElementById('category-filters').appendChild(newCategory);
+        })
 
+        console.log(uniqueCategory);
+        
+    })
+}
+
+getAllcategory();
+
+
+function filterproductsByCategory(category){
+    const token = localStorage.getItem('token');
+
+    fetch(`http://localhost:8085/products/all`, {
+        headers:{
+            'Authorization': `Bearer ${token}`
         }
+    })
+    .then((response) => {
+        return response.json()
+    })
+    .then(data => {
 
-        const filteredProducts = products.filter(p => 
-            filterCategory === 'all' || p.category === filterCategory
-        );
+        let products = document.querySelector('.cards');
+        products.innerHTML = '';
 
-        if (filteredProducts.length === 0) {
-            productContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #777;">Bu kateqoriyada məhsul tapılmadı.</p>';
-            return;
-        }
+        let filterCategory = data.products.filter(product => {
+            return category === product.category;
+        })
 
-        filteredProducts.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
-            productCard.innerHTML = `
-                <div class="product-image-box">
-                    <img src="${product.image || 'https://via.placeholder.com/200x200?text=No+Image'}" alt="${product.model}">
-                </div>
-                <div class="product-details">
-                    <p class="product-model">${product.model}</p>
-                    <div class="product-price">${product.price} AZN</div>
-                    <button class="add-to-cart-btn">Səbətə At</button>
-                </div>
-            `;
-            productContainer.appendChild(productCard);
-        });
-    }
-    
-    displayProducts('all');
-});
+       filterCategory.forEach(element => {
+
+        let cardsDiv = document.querySelector('.cards');
+
+        let cardDiv = document.createElement('div');
+                 cardDiv.classList.add('card');
+                
+                 let imgDiv = document.createElement('div');
+
+                 let image = document.createElement('img');
+                 image.src = element.image;
+
+                 let h5 = document.createElement('h5');
+                 h5.textContent = element.brand;
+
+                 let p = document.createElement('p');
+                 p.textContent = element.price + " AZN";
+
+                 let addToCardBtn = document.createElement('button');
+                 addToCardBtn.textContent = 'add to card';
+                 addToCardBtn.style.backgroundColor = 'black';
+                 addToCardBtn.style.color = 'white';
+                 addToCardBtn.style.border = 'none';
+                 addToCardBtn.style.width = '100%';
+                 addToCardBtn.style.padding = '4px';
+                 addToCardBtn.style.cursor = 'pointer';
+
+        
+                 imgDiv.append(image);
+                 cardDiv.append(imgDiv);
+                 cardDiv.append(h5);
+                 cardDiv.append(p);
+                 cardDiv.append(addToCardBtn);
+
+                 cardsDiv.append(cardDiv);
+       })
+       
+    })
+}
+
+document.getElementById('all').addEventListener('click', (e) => {
+    console.log(e.target.textContent);
+
+     let products = document.querySelector('.cards');
+     products.innerHTML = '';
+    showProducts();
+})

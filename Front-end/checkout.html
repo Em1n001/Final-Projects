@@ -29,7 +29,7 @@
                 <button style="background: white; border: none; padding: 8px 0; cursor: pointer;">🔍</button>
                 <span class="icon-btn"><a href="./userDetails.html"><img src="https://cdn-icons-png.flaticon.com/128/1144/1144760.png" alt="" style="width: 25px; margin-top: 10px; margin-right: 10px;margin-left: 0px;"></span></a>
                 <span class="icon-btn"><a href="./cart.html"><img src="https://cdn-icons-png.flaticon.com/128/3144/3144456.png" alt="" style="width: 25px; margin-top: 10px; margin-right: 10px;"></span></a>
-                <button class="log-in-btn">Log in</button>
+                <button id="log-out-btn">Log in</button>
             </div>
         </div>
     </header>
@@ -142,7 +142,7 @@
 
                         <div class="summary-row subtotal">
                             <span>Aralıq Cəm:</span>
-                            <span></span>
+                            <span id="sub-total"></span>
                         </div>
 
                         <div class="summary-row">
@@ -152,7 +152,7 @@
                         
                         <div class="summary-row total-row">
                             <span>Ümumi Cəm:</span>
-                            <span style="color: var(--red-color);"></span>
+                            <span style="color: var(--red-color);" id="total"></span>
                         </div>
                     </div>
                     
