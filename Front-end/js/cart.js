@@ -82,27 +82,27 @@ function loadOnTable() {
 
 loadOnTable();
 
-function deleteFromCart(){
+function deleteFromCart() {
     const token = localStorage.getItem('token');
 
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('delete-btn')) {
             let cartId = e.target.getAttribute('data-id');
 
-            if(confirm("Are you sure?")) {
+            if (confirm("Are you sure?")) {
 
-            fetch(`http://localhost:8085/cart/delete/${cartId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(resp => {
-                e.target.closest("tr").remove();
-                loadOnTable();
-            })
-          }
-       }
+                fetch(`http://localhost:8085/cart/delete/${cartId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                    .then(resp => {
+                        e.target.closest("tr").remove();
+                        loadOnTable();
+                    })
+            }
+        }
 
     })
 }
@@ -113,24 +113,24 @@ document.querySelector(".checkout-btn").addEventListener('click', () => {
 
     const token = localStorage.getItem('token');
 
-    fetch(`http://localhost:8085/cart/getCart` , {
+    fetch(`http://localhost:8085/cart/getCart`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(async response => {
-        let data = await response.json();
-        
-        let cartIds = data.map(cart => cart.id);
-        console.log(cartIds);
+        .then(async response => {
+            let data = await response.json();
 
-        localStorage.setItem('cartIdss', JSON.stringify(cartIds));
-        window.location.href = "checkout.html"
+            let cartIds = data.map(cart => cart.id);
+            console.log(cartIds);
 
-    })
+            localStorage.setItem('cartIdss', JSON.stringify(cartIds));
+            window.location.href = "checkout.html"
+
+        })
 })
 
-document.getElementById('log-out-btn').addEventListener('click',() => {
+document.getElementById('log-out-btn').addEventListener('click', () => {
     localStorage.removeItem('token');
 })

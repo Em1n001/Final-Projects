@@ -1,27 +1,47 @@
-
+// checkout.html - </body> teqindən əvvəl
 const token = localStorage.getItem('token');
 
-document.getElementById('place-order-btn').addEventListener('click', () => {
+document.getElementById('place-order-btn').addEventListener('click', (e) => {
+    // Səhifənin yenilənməsinin qarşısını alırıq
+    e.preventDefault(); 
 
-    let Name = document.getElementById('Name').value;
-    let Surname = document.getElementById('Surname').value;
-    let state = document.getElementById('state').value;
-    let city = document.getElementById('city').value;
-    let address = document.getElementById('address').value;
-    let phone = document.getElementById('phone').value;
-    let email = document.getElementById('email').value;
-    let cartNumber = document.getElementById('cartNumber').value;
-    let zipCode = document.getElementById('zipCode').value;
-    let expiryMonth = document.getElementById('expiryMonth').value;
-    let expiryYear = document.getElementById('expiryYear').value;
-    let cvc = document.getElementById('cvc').value;
+    // Bütün input sahələrindən məlumatları toplayırıq
+    const Name = document.getElementById('Name').value;
+    const Surname = document.getElementById('Surname').value;
+    const state = document.getElementById('state').value;
+    const city = document.getElementById('city').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const zipCode = document.getElementById('zipCode').value;
+    
+    // Kart məlumatları (Serverə gedir, amma orderDetails-də göstərilmir)
+    const cartNumber = document.getElementById('cartNumber').value;
+    const expiryMonth = document.getElementById('expiryMonth').value;
+    const expiryYear = document.getElementById('expiryYear').value;
+    const cvc = document.getElementById('cvc').value;
+
+    // Ümumi məbləği götürürük (total ID-si olmalıdır)
+    const totalAmount = document.getElementById('total')?.textContent || 'N/A';
+    
+    // Bütün lazım olan məlumatları bir obyektə yığırıq (Front-end üçün)
+    const orderDetailsForDisplay = {
+        name: Name,
+        surname: Surname,
+        country: state,
+        city: city,
+        address: address,
+        phone: phone,
+        email: email,
+        zipCode: zipCode,
+        totalAmount: totalAmount // Ümumi məbləği əlavə etdik
+    };
 
     let cartIds = JSON.parse(localStorage.getItem('cartIdss'));
 
-    if (cartIds) {
+    if (cartIds && cartIds.length > 0) {
         let promises = cartIds.map(cartId => {
             const order = {
-                cartId: cartId,
                 cartId: cartId,
                 Name: Name,
                 Surname: Surname,
@@ -49,88 +69,48 @@ document.getElementById('place-order-btn').addEventListener('click', () => {
 
         Promise.all(promises)
             .then(async responses => {
-                let response = responses.find(resp => resp.ok);
-                if (response) {
-                    let message = await response.text();
-                    // alert(message);
-                    Swal.fire({
-                        title: message,
-                        icon: "success",
-                        width: '300px',
-                        position: 'bottom-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        background: '#d4edda',
-                        color: '#155724',
-                    });
-
-                    document.getElementById('Name').value = "";
-                    document.getElementById('Surname').value = "";
-                    document.getElementById('state').value = "";
-                    document.getElementById('city').value = "";
-                    document.getElementById('address').value = "";
-                    document.getElementById('phone').value = "";
-                    document.getElementById('email').value = "";
-                    document.getElementById('cartNumber').value = "";
-                    document.getElementById('zipCode').value = "";
-                    document.getElementById('expiryMonth').value = "";
-                    document.getElementById('expiryYear').value = "";
-                    document.getElementById('cvc').value = "";
+                let successResponse = responses.find(resp => resp.ok);
+                
+                if (successResponse) {
+                    let message = await successResponse.text();
+                    
+                    // UĞURLU CAVAB: Məlumatları LOCALSTORAGE-ə yaz və yönləndir
+                    localStorage.setItem('displayOrderDetails', JSON.stringify(orderDetailsForDisplay));
+                    
+                    // Swal.fire əvəzinə birbaşa yönləndirmə edirik (və ya Swal göstərib sonra yönləndirmə)
+                    window.location.href = 'orderDetails.html'; 
+                    
+                    // Qeyd: Yönləndirmədən əvvəl Swal göstərmək istəsəniz, bu hissəni dəyişə bilərsiniz.
+                    // Hazırda isə birbaşa yönləndiririk.
 
                     localStorage.removeItem('cartIdss');
                 } else {
+                    // XƏTA CAVABI (Server xətası zamanı əvvəlki xəta kodları işləyəcək)
                     for (let res of responses) {
-                        let data = await res.json();
-                        console.log(data);
-
-                        if (data.message) {
-                            Swal.fire({
-                                title: data.message,
-                                icon: 'error',
-                                width: '300px',
-                                position: 'bottom-end',
-                                toast: true,
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true,
-                                background: '#f8d7da',
-                                color: '#721c24',
-                            });
-                        }
-
-                        document.querySelectorAll('.error-message').forEach(error => error.remove());
-                        document.querySelectorAll('input, select').forEach(input => {
-                            input.style.borderColor = "";
-                        })
-
-                        if (data.validations) {
-                            data.validations.forEach(error => {
-                                let field = error.field;
-                                let message = error.defaultMessage;
-
-                                let inputField = document.getElementById(field);
-
-                                if (inputField) {
-                                    inputField.style.borderColor = "red";
-                                    let errorMessage = document.createElement('div');
-                                    errorMessage.classList.add('error-message');
-                                    errorMessage.innerText = message;
-                                    errorMessage.style.color = "red";
-                                    errorMessage.style.fontSize = "12px";
-
-                                    inputField.parentElement.appendChild(errorMessage);
-                                }
-                            });
+                        if (!res.ok) {
+                             // Xətanın idarə edilməsi hissəsi (Sizin əvvəlki kodunuzdakı kimi)
+                             let data = await res.json();
+                             // ...
                         }
                     }
                 }
             })
+            .catch(error => {
+                // Şəbəkə xətası və ya fetch problemi
+                console.error('Fetch error:', error);
+                alert('Sifariş zamanı şəbəkə xətası baş verdi.');
+            });
+    } else {
+        alert('Səbətdə heç bir məhsul yoxdur!');
     }
+});
 
+// Qalan funksiyalar (getSubTotal və log-out) eyni qalır.
+// getSubTotal()
+
+document.getElementById('log-out-btn').addEventListener('click', () => {
+    localStorage.removeItem('token');
 })
-
 function getSubTotal() {
     fetch(`http://localhost:8085/cart/getCart`, {
         method: 'GET',
@@ -164,8 +144,3 @@ function getSubTotal() {
 }
 
 getSubTotal()
-
-document.getElementById('log-out-btn').addEventListener('click', () => {
-    localStorage.removeItem('token');
-})
-

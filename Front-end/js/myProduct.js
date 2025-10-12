@@ -28,8 +28,8 @@ function loadOnProducts(){
                 <td>
                     <img src="${element.image}" />
                 </td> 
-                <td><button type="button" class="btn btn-primary edit-btn" data-id="${element.id}" style="border-radius: 5px;">Edit</td>
-                <td><button type="button" class="btn btn-danger delete-btn" data-id="${element.id}" style="border-radius: 5px;">Delete</td>
+                <td><button type="button" class="btn btn-primary edit-btn" data-id="${element.id}">Edit</td>
+                <td><button type="button" class="btn btn-danger delete-btn" data-id="${element.id}">Delete</td>
 
                 </tr>
                 

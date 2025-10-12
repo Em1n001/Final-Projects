@@ -281,3 +281,7 @@
         tbody td img{
             width: 200px;
         }
+
+        .btn btn-danger{
+            background-color: red;
+        }

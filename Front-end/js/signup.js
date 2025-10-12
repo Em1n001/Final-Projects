@@ -12,7 +12,7 @@ registerForm.addEventListener('submit' , (e) =>{
         password: document.getElementById('password').value
     }
 
-    fetch('http://localhost:8085/users/register',{
+    fetch(`http://localhost:8085/users/register`,{
         method: 'POST',
         headers: {
             'Content-Type':'application/json'
