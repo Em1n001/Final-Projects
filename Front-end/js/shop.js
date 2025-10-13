@@ -1,4 +1,6 @@
-function showProducts(){
+let allProducts = []
+
+function showProducts() {
     const token = localStorage.getItem('token');
 
     fetch('http://localhost:8085/products/all', {
@@ -7,88 +9,100 @@ function showProducts(){
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(async response => {
-        if(response.ok) {
-            const data = await response.json();
-            console.log(data);
+        .then(async response => {
+            if (response.ok) {
+                const data = await response.json();
+                allProducts = data.products;
+                console.log(data);
 
-            data.products.forEach(element => {
+                data.products.forEach(element => {
 
-                let cardsDiv = document.querySelector('.cards');
+                    let cardsDiv = document.querySelector('.cards');
 
-                let cardDiv = document.createElement('div');
-                cardDiv.classList.add('card');
-                cardDiv.setAttribute('data-id',element.id);
+                    let cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card');
+                    cardDiv.setAttribute('data-id', element.id);
 
-                let imgDiv = document.createElement('div');
+                    let imgDiv = document.createElement('div');
 
-                let image = document.createElement('img');
-                image.src = element.image;
+                    let image = document.createElement('img');
+                    image.src = element.image;
 
-                let h5 = document.createElement('h5');
-                h5.textContent = element.brand;
+                    let h5 = document.createElement('h5');
+                    h5.textContent = element.brand;
 
-                let p = document.createElement('p');
-                p.textContent = element.price + " AZN";
+                    let p = document.createElement('p');
+                    p.textContent = element.price + " AZN";
 
-                let addToCardBtn = document.createElement('button');
-                addToCardBtn.textContent = 'add to card';
-                addToCardBtn.setAttribute('data-id', element.id);
+                    let addToCardBtn = document.createElement('button');
+                    addToCardBtn.textContent = 'add to card';
+                    addToCardBtn.setAttribute('data-id', element.id);
 
-                addToCardBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    let productId = addToCardBtn.getAttribute('data-id');
-                    console.log(productId);
+                    addToCardBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        let productId = addToCardBtn.getAttribute('data-id');
+                        console.log(productId);
 
-                    addToCart(productId);
-                })
+                        addToCart(productId);
+                    })
 
-                addToCardBtn.style.backgroundColor = 'black';
-                addToCardBtn.style.color = 'white';
-                addToCardBtn.style.border = 'none';
-                addToCardBtn.style.width = '100%';
-                addToCardBtn.style.padding = '10px';    
+                    let rating = document.createElement('span');
+                    let stars = "";
+
+                    for (let i = 0; i < element.rating; i++) {
+                        stars += '<i class="fa-solid fa-star"></i>'
+                    }
+                    rating.innerHTML = stars;
 
 
-                imgDiv.append(image);
-                cardDiv.append(imgDiv);
-                cardDiv.append(h5);
-                cardDiv.append(p);
-                cardDiv.append(addToCardBtn);
 
-                cardsDiv.append(cardDiv);
-            });
-        }
-    }) 
+                    addToCardBtn.style.backgroundColor = 'black';
+                    addToCardBtn.style.color = 'white';
+                    addToCardBtn.style.border = 'none';
+                    addToCardBtn.style.width = '100%';
+                    addToCardBtn.style.padding = '10px';
+
+
+                    imgDiv.append(image);
+                    cardDiv.append(imgDiv);
+                    cardDiv.append(h5);
+                    cardDiv.append(p);
+                    cardDiv.append(rating);
+                    cardDiv.append(addToCardBtn);
+
+                    cardsDiv.append(cardDiv);
+                });
+            }
+        })
 }
 
 showProducts();
 
-function searchProduct(){
+function searchProduct() {
     const token = localStorage.getItem('token');
 
     const query = document.getElementById('searchInput').value;
 
     fetch(`http://localhost:8085/products/search?query=${query}`, {
         method: 'GET',
-        headers:{
+        headers: {
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(async response => {
-        let data = await response.json();
-        console.log(data);
+        .then(async response => {
+            let data = await response.json();
+            console.log(data);
 
-        let cards = document.querySelector('.cards');
-        cards.innerHTML = '';
-        
-        data.forEach(element => {
+            let cards = document.querySelector('.cards');
+            cards.innerHTML = '';
+
+            data.forEach(element => {
 
                 let cardsDiv = document.querySelector('.cards');
 
                 let cardDiv = document.createElement('div');
                 cardDiv.classList.add('card');
-                
+
                 let imgDiv = document.createElement('div');
 
                 let image = document.createElement('img');
@@ -110,7 +124,7 @@ function searchProduct(){
                 addToCardBtn.style.padding = '4px';
                 addToCardBtn.style.cursor = 'pointer';
 
-        
+
 
                 imgDiv.append(image);
                 cardDiv.append(imgDiv);
@@ -120,84 +134,84 @@ function searchProduct(){
 
                 cardsDiv.append(cardDiv);
             });
+        })
+}
+
+function sortProducts() {
+
+    const token = localStorage.getItem('token');
+
+    let sortSelect = document.getElementById('sortSelect');
+
+    sortSelect.addEventListener('change', () => {
+        let sortValue = document.getElementById('sortSelect').value;
+
+        fetch(`http://localhost:8085/products/sort?sort=${sortValue}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(async response => {
+                let data = await response.json();
+                console.log(data);
+
+                let cards = document.querySelector('.cards');
+                cards.innerHTML = '';
+
+                data.forEach(element => {
+
+                    let cardsDiv = document.querySelector('.cards');
+
+                    let cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card');
+
+                    let imgDiv = document.createElement('div');
+
+                    let image = document.createElement('img');
+                    image.src = element.image;
+
+                    let h5 = document.createElement('h5');
+                    h5.textContent = element.brand;
+
+                    let p = document.createElement('p');
+                    p.textContent = element.price + " AZN";
+
+                    let addToCardBtn = document.createElement('button');
+                    addToCardBtn.textContent = 'add to card';
+                    addToCardBtn.style.backgroundColor = 'black';
+                    addToCardBtn.style.color = 'white';
+                    addToCardBtn.style.border = 'none';
+                    addToCardBtn.style.width = '100%';
+                    addToCardBtn.style.padding = '4px';
+                    addToCardBtn.style.cursor = 'pointer';
+
+
+                    imgDiv.append(image);
+                    cardDiv.append(imgDiv);
+                    cardDiv.append(h5);
+                    cardDiv.append(p);
+                    cardDiv.append(addToCardBtn);
+
+                    cardsDiv.append(cardDiv);
+                });
+
+            })
     })
 }
 
- function sortProducts(){
+sortProducts();
 
-     const token = localStorage.getItem('token');
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.card')) {
+        let productId = e.target.closest('.card').getAttribute('data-id');
+        console.log(productId);
 
-     let sortSelect = document.getElementById('sortSelect');
-
-     sortSelect.addEventListener('change', () => {
-         let sortValue = document.getElementById('sortSelect').value;
-
-         fetch(`http://localhost:8085/products/sort?sort=${sortValue}`, {
-             method: 'GET',
-             headers: {
-                 'Authorization': `Bearer ${token}`
-             }
-         })
-         .then(async response => {
-             let data = await response.json();
-             console.log(data);
-
-             let cards = document.querySelector('.cards');
-             cards.innerHTML = '';
-
-             data.forEach(element => {
-
-                 let cardsDiv = document.querySelector('.cards');
-
-                 let cardDiv = document.createElement('div');
-                 cardDiv.classList.add('card');
-                
-                 let imgDiv = document.createElement('div');
-
-                 let image = document.createElement('img');
-                 image.src = element.image;
-
-                 let h5 = document.createElement('h5');
-                 h5.textContent = element.brand;
-
-                 let p = document.createElement('p');
-                 p.textContent = element.price + " AZN";
-
-                 let addToCardBtn = document.createElement('button');
-                 addToCardBtn.textContent = 'add to card';
-                 addToCardBtn.style.backgroundColor = 'black';
-                 addToCardBtn.style.color = 'white';
-                 addToCardBtn.style.border = 'none';
-                 addToCardBtn.style.width = '100%';
-                 addToCardBtn.style.padding = '4px';
-                 addToCardBtn.style.cursor = 'pointer';
-
-        
-                 imgDiv.append(image);
-                 cardDiv.append(imgDiv);
-                 cardDiv.append(h5);
-                 cardDiv.append(p);
-                 cardDiv.append(addToCardBtn);
-
-                 cardsDiv.append(cardDiv);
-            });
-                        
-         })
-     })
- }
-
- sortProducts();
-
-document.addEventListener('click', (e) =>{
-    if(e.target.closest('.card')) {
-     let productId = e.target.closest('.card').getAttribute('data-id');
-     console.log(productId);   
-
-     window.location.href = `productDetails.html?id=${productId}`;
+        window.location.href = `productDetails.html?id=${productId}`;
     }
 })
 
-function addToCart(productId){
+function addToCart(productId) {
 
     const token = localStorage.getItem('token');
 
@@ -209,125 +223,176 @@ function addToCart(productId){
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'   
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(cart)
     })
-    .then(async response => {
-        let message = await response.text();
-        alert(message);
-    })
+        .then(async response => {
+            let message = await response.text();
+            alert(message);
+        })
 }
 
 
-function getAllcategory(){
-    
+function getAllcategory() {
+
     const token = localStorage.getItem('token');
 
     fetch(`http://localhost:8085/products/all`, {
-        headers:{
+        headers: {
             'Authorization': `Bearer ${token}`
         }
     })
-    .then((response) => {
-        return response.json()
-    })
-    .then(data => {
-
-        // console.log(data);
-        let uniqueCategory = new Set();
-
-        data.products.forEach(product => {
-            uniqueCategory.add(product.category);            
+        .then((response) => {
+            return response.json()
         })
+        .then(data => {
 
-        uniqueCategory.forEach(category => {
-            
-            let newCategory = document.createElement('a');
-            newCategory.textContent = category;
-            newCategory.style.cursor = "pointer";
+            // console.log(data);
+            let uniqueCategory = new Set();
 
-            newCategory.addEventListener('click', (e) => {
-                console.log(e.target.textContent);
-                filterproductsByCategory(category);
-                
+            data.products.forEach(product => {
+                uniqueCategory.add(product.category);
             })
-            
-            document.getElementById('category-filters').appendChild(newCategory);
-        })
 
-        console.log(uniqueCategory);
-        
-    })
+            uniqueCategory.forEach(category => {
+
+                let newCategory = document.createElement('a');
+                newCategory.textContent = category;
+                newCategory.style.cursor = "pointer";
+
+                newCategory.addEventListener('click', (e) => {
+                    console.log(e.target.textContent);
+                    filterproductsByCategory(category);
+
+                })
+
+                document.getElementById('category-filters').appendChild(newCategory);
+            })
+
+            console.log(uniqueCategory);
+
+        })
 }
 
 getAllcategory();
 
 
-function filterproductsByCategory(category){
+function filterproductsByCategory(category) {
     const token = localStorage.getItem('token');
 
     fetch(`http://localhost:8085/products/all`, {
-        headers:{
+        headers: {
             'Authorization': `Bearer ${token}`
         }
     })
-    .then((response) => {
-        return response.json()
-    })
-    .then(data => {
-
-        let products = document.querySelector('.cards');
-        products.innerHTML = '';
-
-        let filterCategory = data.products.filter(product => {
-            return category === product.category;
+        .then((response) => {
+            return response.json()
         })
+        .then(data => {
 
-       filterCategory.forEach(element => {
+            let products = document.querySelector('.cards');
+            products.innerHTML = '';
 
-        let cardsDiv = document.querySelector('.cards');
+            let filterCategory = data.products.filter(product => {
+                return category === product.category;
+            })
 
-        let cardDiv = document.createElement('div');
-                 cardDiv.classList.add('card');
-                
-                 let imgDiv = document.createElement('div');
+            filterCategory.forEach(element => {
 
-                 let image = document.createElement('img');
-                 image.src = element.image;
+                let cardsDiv = document.querySelector('.cards');
 
-                 let h5 = document.createElement('h5');
-                 h5.textContent = element.brand;
+                let cardDiv = document.createElement('div');
+                cardDiv.classList.add('card');
 
-                 let p = document.createElement('p');
-                 p.textContent = element.price + " AZN";
+                let imgDiv = document.createElement('div');
 
-                 let addToCardBtn = document.createElement('button');
-                 addToCardBtn.textContent = 'add to card';
-                 addToCardBtn.style.backgroundColor = 'black';
-                 addToCardBtn.style.color = 'white';
-                 addToCardBtn.style.border = 'none';
-                 addToCardBtn.style.width = '100%';
-                 addToCardBtn.style.padding = '4px';
-                 addToCardBtn.style.cursor = 'pointer';
+                let image = document.createElement('img');
+                image.src = element.image;
 
-        
-                 imgDiv.append(image);
-                 cardDiv.append(imgDiv);
-                 cardDiv.append(h5);
-                 cardDiv.append(p);
-                 cardDiv.append(addToCardBtn);
+                let h5 = document.createElement('h5');
+                h5.textContent = element.brand;
 
-                 cardsDiv.append(cardDiv);
-       })
-       
-    })
+                let p = document.createElement('p');
+                p.textContent = element.price + " AZN";
+
+                let addToCardBtn = document.createElement('button');
+                addToCardBtn.textContent = 'add to card';
+                addToCardBtn.style.backgroundColor = 'black';
+                addToCardBtn.style.color = 'white';
+                addToCardBtn.style.border = 'none';
+                addToCardBtn.style.width = '100%';
+                addToCardBtn.style.padding = '4px';
+                addToCardBtn.style.cursor = 'pointer';
+
+
+                imgDiv.append(image);
+                cardDiv.append(imgDiv);
+                cardDiv.append(h5);
+                cardDiv.append(p);
+                cardDiv.append(addToCardBtn);
+
+                cardsDiv.append(cardDiv);
+            })
+
+        })
 }
 
 document.getElementById('all').addEventListener('click', (e) => {
     console.log(e.target.textContent);
 
-     let products = document.querySelector('.cards');
-     products.innerHTML = '';
+    let products = document.querySelector('.cards');
+    products.innerHTML = '';
     showProducts();
 })
+
+document.querySelectorAll('.category-list p').forEach((raitp, index) => {
+    raitp.addEventListener('click', () => {
+        let starsCount = 5 - index
+        console.log(starsCount);
+
+        let starsFilterProduct = allProducts.filter(product => {
+            return starsCount = product.rating
+        })
+            console.log(starsFilterProduct);
+        let products = document.querySelector('.cards');
+        products.innerHTML = '';
+
+        starsFilterProduct.forEach(element => {
+            let cardsDiv = document.querySelector('.cards');
+
+            let cardDiv = document.createElement('div');
+            cardDiv.classList.add('card');
+
+            let imgDiv = document.createElement('div');
+
+            let image = document.createElement('img');
+            image.src = element.image;
+
+            let h5 = document.createElement('h5');
+            h5.textContent = element.brand;
+
+            let p = document.createElement('p');
+            p.textContent = element.price + " AZN";
+
+            let addToCardBtn = document.createElement('button');
+            addToCardBtn.textContent = 'add to card';
+            addToCardBtn.style.backgroundColor = 'black';
+            addToCardBtn.style.color = 'white';
+            addToCardBtn.style.border = 'none';
+            addToCardBtn.style.width = '100%';
+            addToCardBtn.style.padding = '4px';
+            addToCardBtn.style.cursor = 'pointer';
+
+
+            imgDiv.append(image);
+            cardDiv.append(imgDiv);
+            cardDiv.append(h5);
+            cardDiv.append(p);
+            cardDiv.append(addToCardBtn);
+
+            cardsDiv.append(cardDiv);
+        })
+    })
+})
+
