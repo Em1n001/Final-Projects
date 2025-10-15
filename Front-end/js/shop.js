@@ -47,10 +47,11 @@ function showProducts() {
                     })
 
                     let rating = document.createElement('span');
+                    rating.style.color = 'gold';
                     let stars = "";
 
                     for (let i = 0; i < element.rating; i++) {
-                        stars += '<i class="fa-solid fa-star"></i>'
+                        stars += '<i class="fa-solid fa-star" style = "color: gold; "></i>'
                     }
                     rating.innerHTML = stars;
 
@@ -69,7 +70,6 @@ function showProducts() {
                     cardDiv.append(p);
                     cardDiv.append(rating);
                     cardDiv.append(addToCardBtn);
-
                     cardsDiv.append(cardDiv);
                 });
             }
@@ -115,6 +115,14 @@ function searchProduct() {
                 p.textContent = element.price + " AZN";
                 p.style.marginLeft = '20px';
 
+                let rating = document.createElement('span');
+                    let stars = "";
+
+                    for (let i = 0; i < element.rating; i++) {
+                        stars += '<i class="fa-solid fa-star"></i>'
+                    }
+                    rating.innerHTML = stars;
+
                 let addToCardBtn = document.createElement('button');
                 addToCardBtn.textContent = 'add to card';
                 addToCardBtn.style.backgroundColor = 'black';
@@ -131,7 +139,7 @@ function searchProduct() {
                 cardDiv.append(h5);
                 cardDiv.append(p);
                 cardDiv.append(addToCardBtn);
-
+                cardDiv.append(rating);
                 cardsDiv.append(cardDiv);
             });
         })
@@ -177,6 +185,14 @@ function sortProducts() {
                     let p = document.createElement('p');
                     p.textContent = element.price + " AZN";
 
+                    let rating = document.createElement('span');
+                    let stars = "";
+
+                    for (let i = 0; i < element.rating; i++) {
+                        stars += '<i class="fa-solid fa-star"></i>'
+                    }
+                    rating.innerHTML = stars;
+
                     let addToCardBtn = document.createElement('button');
                     addToCardBtn.textContent = 'add to card';
                     addToCardBtn.style.backgroundColor = 'black';
@@ -191,8 +207,8 @@ function sortProducts() {
                     cardDiv.append(imgDiv);
                     cardDiv.append(h5);
                     cardDiv.append(p);
+                    cardDiv.append(rating);
                     cardDiv.append(addToCardBtn);
-
                     cardsDiv.append(cardDiv);
                 });
 
@@ -316,6 +332,14 @@ function filterproductsByCategory(category) {
                 let p = document.createElement('p');
                 p.textContent = element.price + " AZN";
 
+                let rating = document.createElement('span');
+                    let stars = "";
+
+                    for (let i = 0; i < element.rating; i++) {
+                        stars += '<i class="fa-solid fa-star"></i>'
+                    }
+                    rating.innerHTML = stars;
+
                 let addToCardBtn = document.createElement('button');
                 addToCardBtn.textContent = 'add to card';
                 addToCardBtn.style.backgroundColor = 'black';
@@ -329,6 +353,7 @@ function filterproductsByCategory(category) {
                 imgDiv.append(image);
                 cardDiv.append(imgDiv);
                 cardDiv.append(h5);
+                cardDiv.append(rating);
                 cardDiv.append(p);
                 cardDiv.append(addToCardBtn);
 
@@ -352,7 +377,7 @@ document.querySelectorAll('.category-list p').forEach((raitp, index) => {
         console.log(starsCount);
 
         let starsFilterProduct = allProducts.filter(product => {
-            return starsCount = product.rating
+            return starsCount === product.rating
         })
             console.log(starsFilterProduct);
         let products = document.querySelector('.cards');
@@ -375,6 +400,15 @@ document.querySelectorAll('.category-list p').forEach((raitp, index) => {
             let p = document.createElement('p');
             p.textContent = element.price + " AZN";
 
+            let rating = document.createElement('span');
+            rating.style.color = 'gold';
+                    let stars = "";
+
+                    for (let i = 0; i < element.rating; i++) {
+                        stars += '<i class="fa-solid fa-star" style = "color: gold; "></i>'
+                    }
+                    rating.innerHTML = stars;
+
             let addToCardBtn = document.createElement('button');
             addToCardBtn.textContent = 'add to card';
             addToCardBtn.style.backgroundColor = 'black';
@@ -389,6 +423,7 @@ document.querySelectorAll('.category-list p').forEach((raitp, index) => {
             cardDiv.append(imgDiv);
             cardDiv.append(h5);
             cardDiv.append(p);
+            cardDiv.append(rating);
             cardDiv.append(addToCardBtn);
 
             cardsDiv.append(cardDiv);

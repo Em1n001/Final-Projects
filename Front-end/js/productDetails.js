@@ -26,6 +26,7 @@ function getProduct(){
 
         let p = document.querySelector('.right-side p');
         p.textContent = "Price :"+ " "+object.price + " AZN";
+        
     })
 
 }
